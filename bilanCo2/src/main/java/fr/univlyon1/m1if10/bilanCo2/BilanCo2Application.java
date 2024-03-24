@@ -1,4 +1,4 @@
-package fr.univlyon1.m1if10.BilanCo2;
+package fr.univlyon1.m1if10.bilanCo2;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
