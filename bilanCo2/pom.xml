@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.4</version>
+		<version>3.2.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>fr.univlyon1.m1if10</groupId>
@@ -16,6 +16,9 @@
 	<description>API for bilan co2 project in m1if10</description>
 	<properties>
 		<java.version>21</java.version>
+		<sonar.projectKey>multi_mif_grp5_bilan_co2_AY6Kkt3eu4zgX3p-IR-V</sonar.projectKey>
+		<sonar.projectName>Bilan_CO2</sonar.projectName>
+		<sonar.qualitygate.wait>true</sonar.qualitygate.wait>
 	</properties>
 	<dependencies>
 		<!-- Dépendance pour JWT -->
