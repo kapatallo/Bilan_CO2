@@ -18,7 +18,7 @@ margin-top: 40px;
     display: flex;
 }
 .navbar {
-    flex-shrink: 0; /* Empêche la barre de navigation de rétrécir */
+    flex-shrink: 0;
    
   }
 .dashboard-content{
