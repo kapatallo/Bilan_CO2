@@ -1,0 +1,56 @@
+.welcome-card {
+    background-color: #7A40F2; /* Couleur de fond pour le bloc */
+    color: white; /* Texte en blanc pour une meilleure lecture sur fond mauve */
+    border-radius: 8px; /* Bords arrondis pour la carte */
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+    height: 185px;
+    gap: 10px; /* Espacement entre les éléments */
+}
+.welcome-card-text{
+    width: 45%;
+    margin: 30px;
+}
+.welcome-card h1 {
+    font-weight: normal;
+    font-size: 22px;
+    margin: 0; 
+}
+
+.welcome-card p {
+
+    font-size: 13px; /* Taille de police pour le paragraphe */
+    font-weight: lighter;
+}
+
+.welcome-card-btn {
+    align-self: flex-start;
+    background-color: #ffffff; /* Bouton blanc */
+    color: #59748A; /* Texte de la couleur du fond de la carte */
+    border: none;
+    border-radius: 8px; /* Bords arrondis pour le bouton */
+    padding: 10px 20px;
+    cursor: pointer; /* Change le curseur en main */
+    font-size: 14;
+    outline: none; /* Retire le contour par défaut au focus */
+    transition: background-color 0.3s; /* Transition pour effet hover */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.welcome-card-btn:hover {
+    background-color: #eceaff;
+    color: #7A40F2;
+}
+
+.user-illustration {
+    width: 200px; 
+    margin-right: 30px;
+    
+}
+
+.welcome-card-text h1,
+.welcome-card-text p,
+.welcome-card-text {
+    text-align: left; /* Aligner le texte à gauche */
+}
