@@ -1,0 +1,29 @@
+{
+    "questions" : [
+        {
+            "questionText": "Quelle est la surface de votre logement ?",
+            "yesNo":false,
+            "unit":"m²"
+        },
+        {
+            "questionText": "Votre logement est-il un appartement ?",
+            "yesNo":true,
+            "unit":""
+        },
+        {
+            "questionText": "Combien de personnes vivent chez vous ?",
+            "yesNo":false,
+            "unit":""
+        },
+        {
+            "questionText": "Quel est l'âge de votre logement ?",
+            "yesNo":false,
+            "unit":"an(s)"
+        },
+        {
+            "questionText": "Quelle est la consommation anuelle d'électricité de votre foyer ?",
+            "yesNo":false,
+            "unit":"kWh"
+        }
+    ]
+}

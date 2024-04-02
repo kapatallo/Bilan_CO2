@@ -1,0 +1,131 @@
+.logo {
+    width:200px;
+    margin:auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.logo-element {
+    padding:5px;
+}
+
+.form {
+    background-color: white;
+    width:800px;
+    margin:auto;
+    border-radius:6px;
+    padding:10px;
+}
+
+.form-part {
+    font-size: 20px;
+    text-decoration: none;
+    color: #59748A; 
+    display: flex;
+    align-items: center;
+    padding:2%; 
+}
+
+.form-part.active {
+    color: #5E17EB;
+    border-radius: 6px;
+}
+
+.icon-bar {
+    margin-right: 10px;
+    flex-shrink: 0;  
+    width: 20px;
+}
+
+.form-frame {
+    background-color: white;
+}
+
+.form-part-container {
+    display:flex;
+    flex-direction:row;
+    padding: 29px;
+    font-family: 'Arial', sans-serif;
+    justify-content: center;
+}
+
+
+.question-form {
+    justify-content: center;
+    padding: 29px;
+}
+
+.question {
+    display:flex;
+    flex-direction:row;
+    margin:30px;
+    justify-content: flex-start;
+}
+
+.question-text-input-container {
+    display:flex;
+    flex-direction:row;
+    justify-content: space-between;
+    width: calc(100% - 50px);
+}
+
+.question-input {
+    border:1px solid;
+    border-color: #656ed3;
+    border-radius:6px;
+    width:12vw;
+}
+
+.question-button-container {
+    display:flex;
+    flex-direction:row;
+}
+
+.question-button {
+    width: 5.4vw;
+    margin-left:1vw;    
+    border:2px solid;
+    border-color: #656ed3;
+    border-radius:6px;
+}
+
+.question-button-clicked {
+    width: 6vw;
+    margin-left:1vw;
+    border:1px,solid;
+    border-color: #656ed3;
+    border-radius:6px;
+    background-color: #7a40f2;
+    color:white;
+}
+
+.question-unit {
+    margin-left: 6px;
+}
+
+.next-step-button-container {
+    display:flex;
+    justify-content: flex-end;
+}
+
+.next-step-button {
+    width: max-content;
+    color:white;
+    background-color:#7a40f2;
+    padding-top:5px;
+    padding-bottom:5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+}
+
+.next-step-button-text {
+    display:flex;
+    align-items: center;
+}
+
+.next-step-button-icon {
+    margin-left: 5px;
+    width: 20px;
+}
