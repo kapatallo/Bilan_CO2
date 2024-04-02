@@ -1,0 +1,73 @@
+stages:
+    - sonarqube-check
+    - sonarqube-check-java
+    - sonarqube-vulnerability-report
+    - deploy
+
+sonarqube-check:
+  stage: sonarqube-check
+  image: 
+    name: sonarsource/sonar-scanner-cli:5.0
+    entrypoint: [""]
+  variables:
+    SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
+    GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
+  cache:
+    key: "${CI_JOB_NAME}"
+    paths:
+      - .sonar/cache
+  script: 
+    - sonar-scanner
+  allow_failure: true
+
+sonarqube-check-java:
+  stage: sonarqube-check-java
+  image: maven:3.9.6-eclipse-temurin-21
+  variables:
+    SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
+    GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
+  cache:
+    key: "${CI_JOB_NAME}"
+    paths:
+      - .sonar/cache
+  script: 
+    - chmod +x ./ci/setup-mvn-proxy.sh
+    - ./ci/setup-mvn-proxy.sh
+    - cd bilanCo2
+    - mvn verify sonar:sonar
+  allow_failure: true
+
+sonarqube-vulnerability-report:
+  stage: sonarqube-vulnerability-report
+  script:
+    - 'which curl || ( apt-get update -y && apt-get install curl -y )'
+    - 'curl -u "${SONAR_TOKEN}:" "${SONAR_HOST_URL}/api/issues/gitlab_sast_export?projectKey=multi_mif_grp5_bilan_co2_AY6Kkt3eu4zgX3p-IR-V&branch=${CI_COMMIT_BRANCH}&pullRequest=${CI_MERGE_REQUEST_IID}" -o gl-sast-sonar-report.json'
+  allow_failure: true
+  artifacts:
+    expire_in: 1 day
+    reports:
+      sast: gl-sast-sonar-report.json
+  dependencies:
+    - sonarqube-check
+
+deploy:
+  stage: deploy
+  cache:
+    key: "$CI_JOB_NAME"
+    paths:
+      - .m2/repository
+  variables:
+    MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
+
+  image: maven:3.9.6-eclipse-temurin-21 # docker image with Maven
+  before_script:
+    - chmod +x ./ci/setup-mvn-proxy.sh
+    - ./ci/setup-mvn-proxy.sh
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - chmod 400 $CI_SSH_KEY
+  script:
+    - cd bilanCo2
+    - mvn clean package
+    - which scp
+    - scp -o StrictHostKeyChecking=no -i $CI_SSH_KEY target/bilanCo2.war gitlabci@192.168.75.51:/opt/tomcat/webapps/api.war
+
