@@ -43,6 +43,7 @@ sonarqube-check-java:
       - .sonar/cache
   script: 
     - cd bilanCo2
+    - mvn clean package
     - mvn ${MAVEN_OPTS} verify sonar:sonar
   allow_failure: true
 
