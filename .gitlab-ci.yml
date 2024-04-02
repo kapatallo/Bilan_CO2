@@ -50,6 +50,7 @@ sonarqube-vulnerability-report:
     - sonarqube-check
 
 deploy:
+  stage: deploy
   cache:
     key: "$CI_JOB_NAME"
     paths:
