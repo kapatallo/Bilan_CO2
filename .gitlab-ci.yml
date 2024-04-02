@@ -32,6 +32,7 @@ sonarqube-check-java:
       - .sonar/cache
   script: 
     - cd bilanCo2
+    - chmod +x ./ci/setup-mvn-proxy.sh
     - ./ci/setup-mvn-proxy.sh
     - mvn verify sonar:sonar
   allow_failure: true
