@@ -54,7 +54,23 @@ margin-top: 40px;
     
 }
 
-
+.doughnut-container{
+    background-color: white;
+    border-radius: 25px;
+    margin-top: 20px;
+    width: 60%;
+    height: 350px;
+}
+.doughnut-title{
+display: flex;
+font-size: 18px;
+font-weight:600;
+color: #191635;
+align-self: flex-start;
+position: relative;
+left: 50px;
+top: 20px;
+}
 .dashboard-info{
     position: sticky;
     top: 0;

@@ -7,6 +7,7 @@ import CarbonIcon from "../../resources/icons/carbon.svg";
 import FeetIcon from "../../resources/icons/feet.svg";
 import EcoIcon from "../../resources/icons/eco.svg";
 import LineChartComponent from './LineChartComponent';
+import DoughnutChartComponent from './DoughnutChartComponent';
 
 
 
@@ -16,7 +17,7 @@ export default function DashboardPage() {
     const carboneEmit= 434 ;
     const co2Km = 2; 
     const choix = 80;
-    const data_chart = [100, 400, 300, 800, 400, 200, 400];
+    const data_chart = [100, 400, 300, 800, 400, 200, 400,300];
 
     return (
         <div className="dashboard-page">
@@ -45,15 +46,19 @@ export default function DashboardPage() {
                             label="De choix éco-friendly"
                         />
                 </div>
+
                 <h2 className="emission-history">Historique d’émission</h2>
                 <div className="chart-container">
-                <LineChartComponent dataChart={data_chart} />
+                    <LineChartComponent dataChart={data_chart} />
                 </div>
                 
+                <div className="doughnut-container">
+                    <h2 className='doughnut-title'>Répartition des émissions</h2>
+                    <DoughnutChartComponent />
+                </div>
 
             </div>
             <div className="dashboard-info">
-
             </div>
         </div>
           )
