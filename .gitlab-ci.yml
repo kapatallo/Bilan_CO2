@@ -66,7 +66,7 @@ deploy:
     - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
     - chmod 400 $CI_SSH_KEY
   script:
-    - cd users
+    - cd bilanCo2
     - mvn clean package
     - which scp
     - scp -o StrictHostKeyChecking=no -i $CI_SSH_KEY target/bilanCo2.war gitlabci@192.168.75.51:/opt/tomcat/webapps/api.war
