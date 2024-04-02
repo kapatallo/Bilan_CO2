@@ -18,6 +18,6 @@ public class HelloWorld {
     @ResponseBody
     @GetMapping(value = "/HelloWorld", produces = {"application/json"})
     public String getHelloWorld() {
-        return "HelloWorld";
+        return "{\"data\": \"Hello world\" }";
     }
 }
