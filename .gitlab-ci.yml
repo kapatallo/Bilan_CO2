@@ -43,7 +43,7 @@ sonarqube-check-java:
       - .sonar/cache
   script: 
     - cd bilanCo2
-    - mvn verify sonar:sonar
+    - mvn ${MAVEN_OPTS} verify sonar:sonar
   allow_failure: true
 
 sonarqube-vulnerability-report:
