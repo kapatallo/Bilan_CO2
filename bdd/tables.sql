@@ -8,6 +8,8 @@ CREATE table utilisateur (
 	primary key (id)
 )
 
+
+
 create table utilisateur_infos (
     idui SERIAL,
     id INT,
@@ -17,8 +19,18 @@ create table utilisateur_infos (
     hab_agglo INTEGER,
     primary key (idui),
     constraint fk_user_info foreign key (id) references utilisateur(id)
- )
+)
  
+create table if not exists questionnaire_hebdo (
+	annee INTEGER,
+	semaine INTEGER,
+	total_emission decimal,
+	id INTEGER,
+	CONSTRAINT fk_id
+      FOREIGN KEY(id) 
+        REFERENCES utilisateur(id),
+	primary key (annee, semaine, id)
+)
  
 create table alimentation (
     annee INT,
@@ -27,7 +39,7 @@ create table alimentation (
     total_alimentation FLOAT,
     primary key (semaine, annee, id),
     constraint fk_alimentation foreign key (annee, semaine, id) references questionnaire_hebdo(annee, semaine, id)
- )
+)
  
  
 create table transport (
@@ -37,7 +49,7 @@ create table transport (
     total_transport FLOAT,
     primary key (semaine, annee, id),
     constraint fk_transport foreign key (annee, semaine, id) references questionnaire_hebdo(annee, semaine, id)
- )
+)
  
 
  create table logement (
@@ -47,7 +59,7 @@ create table transport (
     total_logement FLOAT,
     primary key (semaine, annee, id),
     constraint fk_logement foreign key (annee, semaine, id) references questionnaire_hebdo(annee, semaine, id)
- )
+)
  
  create table divers (
     annee INT,
@@ -56,7 +68,7 @@ create table transport (
     total_divers FLOAT,
     primary key (semaine, annee, id),
     constraint fk_divers foreign key (annee, semaine, id) references questionnaire_hebdo(annee, semaine, id)
- )
+)
 
  
 INSERT INTO utilisateur (nom, prenom, email, mdp, ddn)
