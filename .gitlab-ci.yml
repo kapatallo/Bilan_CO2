@@ -61,6 +61,7 @@ deploy:
 
   image: maven:3.9.6-eclipse-temurin-21 # docker image with Maven
   before_script:
+    - chmod +x ./ci/setup-mvn-proxy.sh
     - ./ci/setup-mvn-proxy.sh
     - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
     - chmod 400 $CI_SSH_KEY
