@@ -4,35 +4,42 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import fr.univlyon1.m1if10.bilanCo2.model.Users;
+import fr.univlyon1.m1if10.bilanCo2.repository.UserRepository;
+import io.swagger.v3.oas.annotations.media.Content;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import model.User;
-import repository.UserRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
 //@CrossOrigin(origins = "http://localhost:8080")
-@RestController
-@RequestMapping("/api")
+@Controller
+@RequestMapping("/users")
 public class UserController {
 
-    @Autowired(required = false)
-    UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
 
-    @GetMapping("/users")
-    public ResponseEntity<List<User>> getAllUser(@RequestParam(required = false) String title) {
+    @GetMapping(value = "/", produces = {"application/json"})
+    @Operation(summary = "Get all users in json format",
+            tags = "Operation REST",
+            responses = {
+                    @ApiResponse(responseCode = "200",
+                            description = "Successful operation", content = {
+                            @Content(mediaType = "application/json")
+                    })
+            })
+    public ResponseEntity<List<Users>> getAllUser(@RequestParam(required = false) String title) {
         try {
-            List<User> users = new ArrayList<User>();
+            List<Users> users = new ArrayList<Users>();
 
             if (title == null)
                 userRepository.findAll().forEach(users::add);
@@ -49,9 +56,19 @@ public class UserController {
         }
     }
 
-    @GetMapping("/user/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable("id") long id) {
-        Optional<User> userData = userRepository.findById(id);
+    @GetMapping(value = "/{id}", produces = {"application/json"})
+    @Operation(summary = "Get one user in json format",
+            tags = "Operation REST",
+            responses = {
+                    @ApiResponse(responseCode = "200",
+                            description = "Successful operation", content = {
+                            @Content(mediaType = "application/json")
+                    }),
+                    @ApiResponse(responseCode = "400",
+                            description = "Bad request", content = @Content())
+            })
+    public ResponseEntity<Users> getUserById(@PathVariable("id") long id) {
+        Optional<Users> userData = userRepository.findById(id);
 
         if (userData.isPresent()) {
             return new ResponseEntity<>(userData.get(), HttpStatus.OK);
@@ -60,12 +77,18 @@ public class UserController {
         }
     }
 
-    @PostMapping("/user")
-    public ResponseEntity<User> createUser(@RequestBody User user) {
+    @PostMapping("/")
+    @Operation(summary = "Create a user",
+            tags = "Operation REST",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Successful operation"),
+                    @ApiResponse(responseCode = "400", description = "Bad request")
+            })
+    public ResponseEntity<Users> createUser(@RequestBody Users users) {
         try {
-            User _user = userRepository
-                    .save(new User(user.getName(), user.getMail()));
-            return new ResponseEntity<>(_user, HttpStatus.CREATED);
+            Users _users = userRepository.save(new Users(users.getName(), users.getMail()));
+            System.out.println("creating users...");
+            return new ResponseEntity<>(_users, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }

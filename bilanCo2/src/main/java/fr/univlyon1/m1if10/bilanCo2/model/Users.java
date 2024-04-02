@@ -1,11 +1,11 @@
-package model;
+package fr.univlyon1.m1if10.bilanCo2.model;
 
 // import javax.persistence.*; // for Spring Boot 2
 import jakarta.persistence.*; // for Spring Boot 3
 
 @Entity
 @Table(name = "users")
-public class User {
+public class Users {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,11 +17,11 @@ public class User {
     @Column(name = "mail")
     private String mail;
 
-    public User() {
+    public Users() {
 
     }
 
-    public User(String name, String mail) {
+    public Users(String name, String mail) {
         this.name = name;
         this.mail = mail;
     }
