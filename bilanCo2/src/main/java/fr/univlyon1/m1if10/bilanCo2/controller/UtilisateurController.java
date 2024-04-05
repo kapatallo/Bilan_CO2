@@ -19,19 +19,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
+/**
+ * The type Utilisateur controller.
+ */
 //@CrossOrigin(origins = "http://localhost:8080")
 @Controller
 @RequestMapping("/utilisateur")
 public class UtilisateurController {
 
-    Logger logger = Logger.getLogger(getClass().getName());
+    /**
+     * The Logger.
+     */
+    private Logger logger = Logger.getLogger(getClass().getName());
 
     private UtilisateurRepository utilisateurRepository;
+
+    /**
+     * Instantiates a new Utilisateur controller.
+     *
+     * @param utilisateurRepository the utilisateur repository
+     */
     @Autowired
-    public UtilisateurController(UtilisateurRepository utilisateurRepository) {
+    public UtilisateurController(final UtilisateurRepository utilisateurRepository) {
         this.utilisateurRepository = utilisateurRepository;
     }
 
+    /**
+     * Gets all user.
+     *
+     * @return the all user
+     */
     @GetMapping(value = "/", produces = {"application/json"})
     @Operation(summary = "Get all Utilisateur in json format",
             tags = "Operation REST",
@@ -49,6 +66,12 @@ public class UtilisateurController {
         }
     }
 
+    /**
+     * Gets user by id.
+     *
+     * @param id the id
+     * @return the user by id
+     */
     @GetMapping(value = "/{id}", produces = {"application/json"})
     @Operation(summary = "Get one user in json format",
             tags = "Operation REST",
@@ -60,7 +83,7 @@ public class UtilisateurController {
                     @ApiResponse(responseCode = "400",
                             description = "Bad request", content = @Content())
             })
-    public ResponseEntity<Utilisateur> getUserById(@PathVariable("id") long id) {
+    public ResponseEntity<Utilisateur> getUserById(@PathVariable("id") final long id) {
         Optional<Utilisateur> userData = utilisateurRepository.findById(id);
 
         if (userData.isPresent()) {
@@ -70,6 +93,12 @@ public class UtilisateurController {
         }
     }
 
+    /**
+     * Create user response entity.
+     *
+     * @param utilisateur the utilisateur
+     * @return the response entity
+     */
     @PostMapping("/")
     @Operation(summary = "Create a user",
             tags = "Operation REST",
@@ -77,9 +106,10 @@ public class UtilisateurController {
                     @ApiResponse(responseCode = "200", description = "Successful operation"),
                     @ApiResponse(responseCode = "400", description = "Bad request")
             })
-    public ResponseEntity<Utilisateur> createUser(@RequestBody Utilisateur utilisateur) {
+    public ResponseEntity<Utilisateur> createUser(@RequestBody final Utilisateur utilisateur) {
         try {
-            Utilisateur resUsers = utilisateurRepository.save(new Utilisateur(utilisateur.getName(), utilisateur.getMail()));
+            Utilisateur resUsers = utilisateurRepository.save(new Utilisateur(
+                    utilisateur.getName(), utilisateur.getMail()));
             logger.info("creating Utilisateur...");
             return new ResponseEntity<>(resUsers, HttpStatus.CREATED);
         } catch (Exception e) {
