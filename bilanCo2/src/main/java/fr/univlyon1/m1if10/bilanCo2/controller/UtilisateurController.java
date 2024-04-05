@@ -1,5 +1,6 @@
 package fr.univlyon1.m1if10.bilanCo2.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -108,8 +109,8 @@ public class UtilisateurController {
             })
     public ResponseEntity<Utilisateur> createUser(@RequestBody final Utilisateur utilisateur) {
         try {
-            Utilisateur resUsers = utilisateurRepository.save(new Utilisateur(
-                    utilisateur.getName(), utilisateur.getMail()));
+            logger.info(utilisateur.toString());
+            Utilisateur resUsers = utilisateurRepository.save(new Utilisateur(utilisateur));
             logger.info("creating Utilisateur...");
             return new ResponseEntity<>(resUsers, HttpStatus.CREATED);
         } catch (Exception e) {
