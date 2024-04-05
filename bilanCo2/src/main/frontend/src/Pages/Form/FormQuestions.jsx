@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './FormQuestions.css'; 
 
 export default function FirstFormQuestions(props) {
@@ -26,25 +26,18 @@ export default function FirstFormQuestions(props) {
     const [haveCar,setHaveCar] = useState(false)
 
     const ButtonsYesNoCar = () => {
-        const [yes,setYes] = useState(false);
-        const [no,setNo] = useState(false);
-
         return (
             
             <div className='question-button-container'> 
                 <div className={haveCar ? 'question-button-clicked': 'question-button'}
                 onClick={() => { 
-                    console.log("yippee");
                     setHaveCar(true)
-                    setYes(true)
-                    setNo(false)
                 }}> Oui </div>
                 
                 <div className={haveCar ? 'question-button': 'question-button-clicked'}
                 onClick={() => { 
                     setHaveCar(false)
-                    setYes(false)
-                    setNo(true)
+
                 }}> Non </div> 
             </div>
         )
