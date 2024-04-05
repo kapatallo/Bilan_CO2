@@ -6,6 +6,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
+import java.time.LocalDate;
 
 /**
  * The type Utilisateur.
@@ -15,7 +16,7 @@ import jakarta.persistence.Column;
 public class Utilisateur {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(name = "nom")
@@ -31,7 +32,7 @@ public class Utilisateur {
     private String mdp;
 
     @Column(name = "ddn")
-    private String ddn;
+    private LocalDate ddn;
 
     /**
      * Instantiates a new Utilisateur.
@@ -52,6 +53,32 @@ public class Utilisateur {
     }
 
     /**
+     * Instantiates a new Utilisateur.
+     *
+     * @param nom    the nom
+     * @param prenom the prenom
+     * @param email  the email
+     * @param mdp    the mdp
+     * @param ddn    the ddn
+     */
+    public Utilisateur(final String nom, final String prenom, final String email, final String mdp,
+                       final LocalDate ddn) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.mdp = mdp;
+        this.ddn = ddn;
+    }
+
+    public  Utilisateur(final Utilisateur newUtilisateur) {
+        this.nom = newUtilisateur.getNom();
+        this.prenom = newUtilisateur.getPrenom();
+        this.email = newUtilisateur.getEmail();
+        this.mdp = newUtilisateur.getMdp();
+        this.ddn = newUtilisateur.getDdn();
+    }
+
+    /**
      * Gets id.
      *
      * @return the id
@@ -61,44 +88,106 @@ public class Utilisateur {
     }
 
     /**
-     * Gets name.
+     * Sets id.
      *
-     * @return the name
+     * @param id the id
      */
-    public String getName() {
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    /**
+     * Gets nom.
+     *
+     * @return the nom
+     */
+    public String getNom() {
         return nom;
     }
 
     /**
-     * Sets name.
+     * Sets nom.
      *
      * @param nom the nom
      */
-    public void setName(final String nom) {
+    public void setNom(String nom) {
         this.nom = nom;
     }
 
     /**
-     * Gets mail.
+     * Gets prenom.
      *
-     * @return the mail
+     * @return the prenom
      */
-    public String getMail() {
+    public String getPrenom() {
+        return prenom;
+    }
+
+    /**
+     * Sets prenom.
+     *
+     * @param prenom the prenom
+     */
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    /**
+     * Gets email.
+     *
+     * @return the email
+     */
+    public String getEmail() {
         return email;
     }
 
     /**
-     * Sets mail.
+     * Sets email.
      *
      * @param email the email
      */
-    public void setMail(final String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     * Gets mdp.
+     *
+     * @return the mdp
+     */
+    public String getMdp() {
+        return mdp;
+    }
+
+    /**
+     * Sets mdp.
+     *
+     * @param mdp the mdp
+     */
+    public void setMdp(String mdp) {
+        this.mdp = mdp;
+    }
+
+    /**
+     * Gets ddn.
+     *
+     * @return the ddn
+     */
+    public LocalDate getDdn() {
+        return ddn;
+    }
+
+    /**
+     * Sets ddn.
+     *
+     * @param ddn the ddn
+     */
+    public void setDdn(LocalDate ddn) {
+        this.ddn = ddn;
+    }
 
     @Override
     public String toString() {
-        return "Tutorial [id=" + id + ", nom=" + nom + ", email=" + email + "]";
+        return "{id:" + id + ", prenom: " + prenom + ", nom: " + nom + ", email: " + email + ", ddn: " + ddn + "]";
     }
 }
