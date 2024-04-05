@@ -8,7 +8,13 @@ CREATE table utilisateur (
 	primary key (id)
 )
 
+ALTER TABLE utilisateur ALTER COLUMN nom set not null;
+ALTER TABLE utilisateur ALTER COLUMN prenom set not null;
+ALTER TABLE utilisateur ALTER COLUMN email set not null;
+ALTER TABLE utilisateur ALTER COLUMN mdp set not null;
+ALTER TABLE utilisateur ALTER COLUMN ddn set not null;
 
+ALTER TABLE utilisateur ADD CONSTRAINT email_unique UNIQUE(email);
 
 create table utilisateur_infos (
     idui SERIAL,
