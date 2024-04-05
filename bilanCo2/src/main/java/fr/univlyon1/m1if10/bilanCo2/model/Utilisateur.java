@@ -70,6 +70,11 @@ public class Utilisateur {
         this.ddn = ddn;
     }
 
+    /**
+     * Instantiates a new Utilisateur.
+     *
+     * @param newUtilisateur the new utilisateur
+     */
     public  Utilisateur(final Utilisateur newUtilisateur) {
         this.nom = newUtilisateur.getNom();
         this.prenom = newUtilisateur.getPrenom();
@@ -92,7 +97,7 @@ public class Utilisateur {
      *
      * @param id the id
      */
-    public void setId(long id) {
+    public void setId(final long id) {
         this.id = id;
     }
 
@@ -110,7 +115,7 @@ public class Utilisateur {
      *
      * @param nom the nom
      */
-    public void setNom(String nom) {
+    public void setNom(final String nom) {
         this.nom = nom;
     }
 
@@ -128,7 +133,7 @@ public class Utilisateur {
      *
      * @param prenom the prenom
      */
-    public void setPrenom(String prenom) {
+    public void setPrenom(final String prenom) {
         this.prenom = prenom;
     }
 
@@ -146,7 +151,7 @@ public class Utilisateur {
      *
      * @param email the email
      */
-    public void setEmail(String email) {
+    public void setEmail(final String email) {
         this.email = email;
     }
 
@@ -164,7 +169,7 @@ public class Utilisateur {
      *
      * @param mdp the mdp
      */
-    public void setMdp(String mdp) {
+    public void setMdp(final String mdp) {
         this.mdp = mdp;
     }
 
@@ -182,12 +187,13 @@ public class Utilisateur {
      *
      * @param ddn the ddn
      */
-    public void setDdn(LocalDate ddn) {
+    public void setDdn(final LocalDate ddn) {
         this.ddn = ddn;
     }
 
     @Override
     public String toString() {
-        return "{id:" + id + ", prenom: " + prenom + ", nom: " + nom + ", email: " + email + ", ddn: " + ddn + "]";
+        return "{id:" + id + ", prenom: " + prenom + ", nom: " + nom + ", email: " + email
+                + ", ddn: " + ddn + "]";
     }
 }

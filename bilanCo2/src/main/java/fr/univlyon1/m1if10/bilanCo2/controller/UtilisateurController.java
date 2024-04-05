@@ -1,6 +1,5 @@
 package fr.univlyon1.m1if10.bilanCo2.controller;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -11,7 +10,6 @@ import io.swagger.v3.oas.annotations.media.Content;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,19 +17,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * The type Utilisateur controller.
  */
 //@CrossOrigin(origins = "http://localhost:8080")
-@Controller
+@RestController
 @RequestMapping("/utilisateur")
 public class UtilisateurController {
 
     /**
      * The Logger.
      */
-    private Logger logger = Logger.getLogger(getClass().getName());
+    private final Logger logger = Logger.getLogger(getClass().getName());
 
     private UtilisateurRepository utilisateurRepository;
 
@@ -109,7 +108,6 @@ public class UtilisateurController {
             })
     public ResponseEntity<Utilisateur> createUser(@RequestBody final Utilisateur utilisateur) {
         try {
-            logger.info(utilisateur.toString());
             Utilisateur resUsers = utilisateurRepository.save(new Utilisateur(utilisateur));
             logger.info("creating Utilisateur...");
             return new ResponseEntity<>(resUsers, HttpStatus.CREATED);
