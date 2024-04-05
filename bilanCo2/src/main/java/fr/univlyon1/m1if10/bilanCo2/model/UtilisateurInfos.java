@@ -1,11 +1,13 @@
 package fr.univlyon1.m1if10.bilanCo2.model;
 
-import jakarta.persistence.Entity; // for Spring Boot 3
-import jakarta.persistence.Table;
+import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Table;
 import jakarta.persistence.Column;
+import jakarta.persistence.ForeignKey;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.GeneratedValue;
 
 /**
  * The type Utilisateur infos.
@@ -15,10 +17,12 @@ import jakarta.persistence.Column;
 public class UtilisateurInfos {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idui;
 
-    @Column(name = "id")
+
+    @JoinColumn(name = "utilisateur", nullable = false,
+            foreignKey = @ForeignKey(name = "id"))
     private long id;
 
     @Column(name = "cnit")

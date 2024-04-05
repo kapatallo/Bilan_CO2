@@ -1,9 +1,11 @@
 package fr.univlyon1.m1if10.bilanCo2.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.ForeignKey;
 
 /**
  * The type Questionnaire hebdo.
@@ -19,6 +21,8 @@ public class QuestionnaireHebdo {
     private int semaine;
 
     @Id
+    @JoinColumn(name = "utilisateur_infos", nullable = false,
+            foreignKey = @ForeignKey(name = "id"))
     private int id;
 
     @Column(name = "total_emission")

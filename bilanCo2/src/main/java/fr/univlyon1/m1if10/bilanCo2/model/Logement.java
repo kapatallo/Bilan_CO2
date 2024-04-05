@@ -1,9 +1,11 @@
 package fr.univlyon1.m1if10.bilanCo2.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.ForeignKey;
 
 /**
  * The type Logement.
@@ -13,12 +15,18 @@ import jakarta.persistence.Table;
 public class Logement {
 
     @Id
+    @JoinColumn(name = "questionnaire_hebdo", nullable = false,
+            foreignKey = @ForeignKey(name = "annee"))
     private int annee;
 
     @Id
+    @JoinColumn(name = "questionnaire_hebdo", nullable = false,
+            foreignKey = @ForeignKey(name = "semaine"))
     private int semaine;
 
     @Id
+    @JoinColumn(name = "questionnaire_hebdo", nullable = false,
+            foreignKey = @ForeignKey(name = "id"))
     private int id;
 
     @Column(name = "total_logement")
