@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ useState } from 'react';
 import './DashboardPage.css'; 
 import NavBar from '../../NavBar/NavBar';
 import WelcomeCard from './WelcomeCard';
@@ -10,10 +10,21 @@ import LineChartComponent from './LineChartComponent';
 import DoughnutChartComponent from './DoughnutChartComponent';
 import SemiCircleDoughnutChart from './SemiCircleDoughnutChart';
 import SemiCircleDoughnutChartDiff from './SemiCircleDoughnutChartDiff';
-
+import WeeklyPopup from "./WeeklyPopup"
 
 
 export default function DashboardPage() {
+
+    const [showPopup, setShowPopup] = useState(false);
+
+    const handleOpenPopup = () => {
+      setShowPopup(true);
+    };
+  
+    const handleClosePopup = () => {
+      setShowPopup(false);
+    };
+
     const username = "Jawad Mecheri";
     const top = 40;
     const carboneEmit= 434 ;
@@ -25,12 +36,14 @@ export default function DashboardPage() {
     const doughnutColor_diff = diff >= 0 ? "#71DDB1" : "#DD7171";
 
     return (
+        
         <div className="dashboard-page">
+            <WeeklyPopup show={showPopup} onClose={handleClosePopup} />
             <NavBar />
             <div className="dashboard-content">
                 <p className="header-page">Pages / <span className="header-page-name">Dashboard</span></p>
                 <h2 className="page-title">Dashboard</h2>
-                <WelcomeCard username={username} top={top} />
+                <WelcomeCard username={username} top={top} onButtonClick={handleOpenPopup} />
                 <div className="dashboard-stats">
                         <InfoCard
                             icon={CarbonIcon}
