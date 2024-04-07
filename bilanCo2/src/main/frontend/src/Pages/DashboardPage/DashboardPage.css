@@ -118,10 +118,10 @@ margin-bottom: 20px;
 
 .quota_percentage_text{
 position:relative;
-bottom: 80px;
+bottom: 95px;
 color: #6E7191;
 font-size: 12px;
-width: 70%;
+width: 77%;
 }
 
 
@@ -136,6 +136,8 @@ font-size:24px ;
 .diff_percentage_text{
     position:relative;
     bottom: 167px; 
+    width: 75%;
+
 }
 .diff_percentage_text_title{
     font-size: 18px;
