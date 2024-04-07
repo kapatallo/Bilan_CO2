@@ -27,7 +27,7 @@ const NavBar = () => {
         <li>
         <NavLink to="/comparison" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
           <ComparisonIcon className="icon" />
-          Comparison
+          Comparaison
         </NavLink>
 
         </li>

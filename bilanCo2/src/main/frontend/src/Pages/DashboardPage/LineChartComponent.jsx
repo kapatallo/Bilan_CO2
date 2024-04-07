@@ -75,10 +75,10 @@ export default function LineChartComponent({ dataChart }) {
         },
             x: {
                 grid: {
-                    display: false, // Cacher les lignes de grille de l'axe X
+                    display: false, 
                 },
                 ticks: {
-                    color: '#9e9e9e' // Couleur des étiquettes de l'axe X
+                    color: '#9e9e9e' 
                 }
             }
         }

@@ -8,6 +8,8 @@ import FeetIcon from "../../resources/icons/feet.svg";
 import EcoIcon from "../../resources/icons/eco.svg";
 import LineChartComponent from './LineChartComponent';
 import DoughnutChartComponent from './DoughnutChartComponent';
+import SemiCircleDoughnutChart from './SemiCircleDoughnutChart';
+import SemiCircleDoughnutChartDiff from './SemiCircleDoughnutChartDiff';
 
 
 
@@ -18,6 +20,9 @@ export default function DashboardPage() {
     const co2Km = 2; 
     const choix = 80;
     const data_chart = [100, 400, 300, 800, 400, 200, 400,300];
+    const quota = 86;
+    const diff = 84;
+    const doughnutColor_diff = diff >= 0 ? "#71DDB1" : "#DD7171";
 
     return (
         <div className="dashboard-page">
@@ -52,9 +57,36 @@ export default function DashboardPage() {
                     <LineChartComponent dataChart={data_chart} />
                 </div>
                 
-                <div className="doughnut-container">
-                    <h2 className='doughnut-title'>Répartition des émissions</h2>
-                    <DoughnutChartComponent />
+                <div className="emission-stats">
+                    <div className="doughnut-container">
+                        <h2 className='doughnut-title'>Répartition des émissions</h2>
+                        <DoughnutChartComponent />
+                    </div>
+                    <div className="emission-percentages">
+                        <div className="semicircle-DoughnutChart">
+                            <SemiCircleDoughnutChart
+                                percentage_doughnut={quota}
+                                className="semiCircle-qota-percentage"
+                                doughnutColor="#8A56AC"
+
+                            />
+                            <p className='quota_percentage'>{quota}%</p>
+                            <p className='quota_percentage_text'>Vous avez déjà émis {quota}% du quota de carbone prévu pour ce mois-ci.</p>
+                        </div>
+                        <div className="semicircle-DoughnutChart">
+                        <SemiCircleDoughnutChartDiff
+                            percentage_doughnut={diff}
+                            className="semiCircle-diff-percentage"
+                            doughnutColor={doughnutColor_diff} 
+                        />
+                            <p className='diff-percentage'>{diff}%</p>
+                            <p className='diff-text'>
+                                {diff > 0 ? `Incrementation` : `Decrementation`}
+                            </p>                            
+                        <p className='diff_percentage_text'><h1 className="diff_percentage_text_title">Ce mois-ci</h1>{data_chart[7]} kgs le mois passé à la même semaine du mois.</p>
+                        </div>  
+
+                    </div>
                 </div>
 
             </div>
