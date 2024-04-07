@@ -1,0 +1,72 @@
+{
+    "questions" : [
+        [
+            [
+                {
+                    "questionText": "Avez-vous une voiture ?",
+                    "type":"yesNo",
+                    "type-list":"",
+                    "unit":""
+                }
+            ],
+            [
+                {
+                    "questionText": "Avez-vous une voiture ?",
+                    "type":"yesNo",
+                    "type-list":"",
+                    "unit":""
+                },
+                {
+                    "questionText": "Quelle est la marque de votre voiture ?",
+                    "type":"liste",
+                    "type-list":"marque",
+                    "unit":""
+                },
+                {
+                    "questionText": "Quel est le modèle de votre voiture ?",
+                    "type":"liste",
+                    "type-list":"modèle",
+                    "unit":""
+                },
+                {
+                    "questionText": "Quel est le type de moteur de votre véhicule ?",
+                    "type":"liste",
+                    "type-list":"moteur",
+                    "unit":""
+                }
+            ]
+        ],
+        [
+            {
+                "questionText": "Quelle est la surface de votre logement ?",
+                "type":"input",
+                "type-list":null,
+                "unit":"m²"
+            },
+            {
+                "questionText": "Votre logement est-il un appartement ?",
+                "type":"yesNo",
+                "type-list":null,
+                "unit":""
+            },
+            {
+                "questionText": "Combien de personnes vivent chez vous ?",
+                "type":"input",
+                "type-list":null,
+                "unit":""
+            },
+            {
+                "questionText": "Quel est l'âge de votre logement ?",
+                "type":"input",
+                "type-list":null,
+                "unit":"an(s)"
+            },
+            {
+                "questionText": "Quelle est la consommation anuelle d'électricité de votre foyer ?",
+                "type":"input",
+                "type-list":null,
+                "unit":"kWh"
+            }
+        ]
+    ]
+}
