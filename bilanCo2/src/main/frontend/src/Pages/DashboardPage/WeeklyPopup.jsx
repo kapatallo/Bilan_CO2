@@ -1,9 +1,9 @@
 import { useState } from "react";
 import './WeeklyPopup.css'; 
-import FormQuestions from "./../Form/FormQuestions";
+import FormQuestions from "../FirstFormPage/FirstFormQuestions";
 export default function WeeklyPopup({ show, onClose }) {
   
-  const questions = require('./../FirstFormPage/questions.json');
+  const questions = require('./questions.json');
   const [formPart, setFormPart] = useState({
     "partText":"transport",
     "partId":0

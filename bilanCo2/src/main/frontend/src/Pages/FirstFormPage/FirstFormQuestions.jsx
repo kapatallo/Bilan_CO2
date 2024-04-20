@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './FormQuestions.css'; 
+import './FirstFormQuestions.css'; 
 
 export default function FirstFormQuestions(props) {
     const ButtonsYesNo = () => {

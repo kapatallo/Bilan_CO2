@@ -1,7 +1,7 @@
 // ConnectionForm.js
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import FormQuestions from '../Form/FormQuestions.jsx';
+import FormQuestions from './FirstFormQuestions.jsx';
 import { ReactComponent as TransportIcon } from '../../resources/icons/transport.svg';
 import { ReactComponent as HouseIcon } from '../../resources/icons/house.svg';
 import { ReactComponent as FoodIcon } from '../../resources/icons/food.svg';
