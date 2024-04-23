@@ -47,11 +47,11 @@ export default function ConnexionForm() {
                 </div>
 
                 <div className="input-container">
-                    <input type="submit" value="S'inscrire" />
+                    <input type="submit" value="Se connecter" />
                 </div>
             </form>
             <div className="login-link">
-                <a href="/Dashboard">Se connecter</a>
+                <a href="/">S' inscrire</a>
             </div>
         </div>
     );
