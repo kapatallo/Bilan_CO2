@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>fr.univlyon1.m1if10</groupId>
-	<artifactId>api</artifactId>
+	<artifactId>bilanCo2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>bilanCo2</name>

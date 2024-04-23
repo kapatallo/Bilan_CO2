@@ -66,20 +66,6 @@ public class UtilisateurInfos {
     }
 
     /**
-     * Instantiates a new Utilisateur infos.
-     *
-     * @param newUtilisateurInfos the new utilisateur infos
-     */
-    public UtilisateurInfos(final UtilisateurInfos newUtilisateurInfos) {
-        this.idui = newUtilisateurInfos.getIdui();
-        this.id = newUtilisateurInfos.getId();
-        this.cnit = newUtilisateurInfos.getCnit();
-        this.nbPersFoyer = newUtilisateurInfos.getNbPersFoyer();
-        this.surfaceLogement = newUtilisateurInfos.getSurfaceLogement();
-        this.habAgglo = newUtilisateurInfos.getHabAgglo();
-    }
-
-    /**
      * Gets idui.
      *
      * @return the idui
