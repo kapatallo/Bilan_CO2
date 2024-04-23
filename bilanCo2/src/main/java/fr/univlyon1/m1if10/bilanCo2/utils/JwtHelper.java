@@ -46,7 +46,7 @@ public final class JwtHelper {
      * @return un booléen qui indique si le token est bien formé et valide (pas expiré) et
      * si l'utilisateur est authentifié
      */
-    public static String verifyToken(final String token, @NotNull final String req)
+    public static Long verifyToken(final String token, @NotNull final String req)
             throws NullPointerException, JWTVerificationException,
             BadRequestException, AuthenticationException {
         try {
@@ -58,7 +58,7 @@ public final class JwtHelper {
             // n'existe pas et une JWTVerificationException s'il est invalide
             DecodedJWT jwt = JWT.decode(token); // Pourrait lever une JWTDecodeException mais
             // comme le token est vérifié avant, cela ne devrait pas arriver
-            return jwt.getClaim("sub").asString();
+            return jwt.getClaim("id").asLong();
         } catch (JWTDecodeException e) {
             throw new BadRequestException("Token invalide");
         } catch (TokenExpiredException e) {
@@ -70,16 +70,16 @@ public final class JwtHelper {
     /**
      * Crée un token avec les caractéristiques de l'utilisateur.
      *
-     * @param subject le login de l'utilisateur
+     * @param id  l'id de l'utilisateur
      * @param req     la requête HTTP pour pouvoir en extraire l'origine avec getOrigin()
      * @return le token signé
      * @throws JWTCreationException si les paramètres ne permettent pas de créer un token
      */
-    public static String generateToken(final String subject, final String req)
+    public static String generateToken(final Long id, final String req)
             throws JWTCreationException {
         return JWT.create()
                 .withIssuer(ISSUER)
-                .withSubject(subject)
+                .withClaim("id", id)
                 .withAudience(req)
                 .withExpiresAt(new Date(new Date().getTime() + LIFETIME))
                 .sign(ALGORITHM);
@@ -88,16 +88,16 @@ public final class JwtHelper {
     /**
      * Crée un token avec une lifetime de 0.
      *
-     * @param subject le login de l'utilisateur
+     * @param id l'id de l'utilisateur
      * @param req     la requête HTTP pour pouvoir en extraire l'origine avec getOrigin()
      * @return le token signé
      * @throws JWTCreationException si les paramètres ne permettent pas de créer un token
      */
-    public static String noLifeTimeToken(final String subject, final String req)
+    public static String noLifeTimeToken(final Long id, final String req)
             throws JWTCreationException {
         return JWT.create()
                 .withIssuer(ISSUER)
-                .withSubject(subject)
+                .withClaim("id", id)
                 .withAudience(req)
                 .withExpiresAt(new Date(new Date().getTime()))
                 .sign(ALGORITHM);
