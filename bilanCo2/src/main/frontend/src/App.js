@@ -18,6 +18,7 @@ function App() {
           <Route path="/Dashboard" element={<DashboardPage />} />
           <Route path="/Settings" element={<SettingPage />} />
           <Route path="/Comparison" element={<ComparisonPage />} />
+          <Route path="/login" element={<ConnexionForm />} />
         </Routes>
       </div>
     </Router>
