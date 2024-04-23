@@ -1,11 +1,7 @@
 package fr.univlyon1.m1if10.bilanCo2.controller;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.logging.Logger;
-
-import fr.univlyon1.m1if10.bilanCo2.model.Utilisateur;
-import fr.univlyon1.m1if10.bilanCo2.repository.UtilisateurRepository;
+import fr.univlyon1.m1if10.bilanCo2.model.Logement;
+import fr.univlyon1.m1if10.bilanCo2.repository.LogementRepository;
 import io.swagger.v3.oas.annotations.media.Content;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,38 +15,39 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.logging.Logger;
+
 /**
- * The type Utilisateur controller.
+ * The type Logement controller.
  */
 //@CrossOrigin(origins = "http://localhost:8080")
 @RestController
-@RequestMapping("/utilisateur")
-public class UtilisateurController {
+@RequestMapping("/utilisateur/logement")
+public class LogementController {
 
-    /**
-     * The Logger.
-     */
     private final Logger logger = Logger.getLogger(getClass().getName());
 
-    private UtilisateurRepository utilisateurRepository;
+    private LogementRepository logementRepository;
 
     /**
-     * Instantiates a new Utilisateur controller.
+     * Instantiates a new Logement controller.
      *
-     * @param utilisateurRepository the utilisateur repository
+     * @param logementRepository the logement repository
      */
     @Autowired
-    public UtilisateurController(final UtilisateurRepository utilisateurRepository) {
-        this.utilisateurRepository = utilisateurRepository;
+    public LogementController(final LogementRepository logementRepository) {
+        this.logementRepository = logementRepository;
     }
 
     /**
-     * Gets all user.
+     * Gets all user logement.
      *
-     * @return the all user
+     * @return the all user logement
      */
     @GetMapping(value = "/", produces = {"application/json"})
-    @Operation(summary = "Get all Utilisateur in json format",
+    @Operation(summary = "Get all Logement in json format",
             tags = "Operation REST",
             responses = {
                     @ApiResponse(responseCode = "200",
@@ -58,22 +55,22 @@ public class UtilisateurController {
                             @Content(mediaType = "application/json")
                     })
             })
-    public ResponseEntity<List<Utilisateur>> getAllUser() {
+    public ResponseEntity<List<Logement>> getAllUserLogement() {
         try {
-            return new ResponseEntity<>(utilisateurRepository.findAll(), HttpStatus.OK);
+            return new ResponseEntity<>(logementRepository.findAll(), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     /**
-     * Gets user by id.
+     * Gets user logement by id.
      *
      * @param id the id
-     * @return the user by id
+     * @return the user logement by id
      */
     @GetMapping(value = "/{id}", produces = {"application/json"})
-    @Operation(summary = "Get one user in json format",
+    @Operation(summary = "Get one userLogement in json format",
             tags = "Operation REST",
             responses = {
                     @ApiResponse(responseCode = "200",
@@ -83,11 +80,11 @@ public class UtilisateurController {
                     @ApiResponse(responseCode = "400",
                             description = "Bad request", content = @Content())
             })
-    public ResponseEntity<Utilisateur> getUserById(@PathVariable("id") final long id) {
-        Optional<Utilisateur> userData = utilisateurRepository.findById(id);
+    public ResponseEntity<Logement> getUserLogementById(@PathVariable("id") final long id) {
+        Optional<Logement> userLogementData = logementRepository.findById(id);
 
-        if (userData.isPresent()) {
-            return new ResponseEntity<>(userData.get(), HttpStatus.OK);
+        if (userLogementData.isPresent()) {
+            return new ResponseEntity<>(userLogementData.get(), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -96,24 +93,25 @@ public class UtilisateurController {
     /**
      * Create user response entity.
      *
-     * @param utilisateur the utilisateur
+     * @param logement the logement
      * @return the response entity
      */
     @PostMapping("/")
-    @Operation(summary = "Create a user",
+    @Operation(summary = "Create a userLogement",
             tags = "Operation REST",
             responses = {
                     @ApiResponse(responseCode = "200", description = "Successful operation"),
                     @ApiResponse(responseCode = "400", description = "Bad request")
             })
-    public ResponseEntity<Utilisateur> createUser(@RequestBody final Utilisateur utilisateur) {
+    public ResponseEntity<Logement> createUser(@RequestBody final
+                                                           Logement logement) {
         try {
-            Utilisateur resUsers = utilisateurRepository.save(new Utilisateur(utilisateur));
-            logger.info("creating Utilisateur...");
-            return new ResponseEntity<>(resUsers, HttpStatus.CREATED);
+            Logement resLogement = logementRepository.save(new
+                    Logement(logement));
+            logger.info("creating Logement...");
+            return new ResponseEntity<>(resLogement, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
 }

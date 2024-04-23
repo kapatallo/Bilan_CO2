@@ -69,6 +69,18 @@ public class Alimentation {
     }
 
     /**
+     * Instantiates a new Alimentation.
+     *
+     * @param newAlimentation the new alimentation
+     */
+    public  Alimentation(final Alimentation newAlimentation) {
+        this.annee = newAlimentation.getAnnee();
+        this.semaine = newAlimentation.getSemaine();
+        this.id = newAlimentation.getId();
+        this.totalAlimentation = newAlimentation.getTotalAlimentation();
+    }
+
+    /**
      * Gets annee.
      *
      * @return the annee

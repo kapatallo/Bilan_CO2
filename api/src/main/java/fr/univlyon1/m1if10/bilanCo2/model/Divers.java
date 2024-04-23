@@ -55,9 +55,9 @@ public class Divers {
     /**
      * Instantiates a new Divers.
      *
-     * @param annee             the annee
-     * @param semaine           the semaine
-     * @param id                the id
+     * @param annee       the annee
+     * @param semaine     the semaine
+     * @param id          the id
      * @param totalDivers the total divers
      */
     public Divers(final int annee, final int semaine, final int id,
@@ -66,6 +66,18 @@ public class Divers {
         this.semaine = semaine;
         this.id = id;
         this.totalDivers = totalDivers;
+    }
+
+    /**
+     * Instantiates a new Divers.
+     *
+     * @param newDivers the new divers
+     */
+    public  Divers(final Divers newDivers) {
+        this.annee = newDivers.getAnnee();
+        this.semaine = newDivers.getSemaine();
+        this.id = newDivers.getId();
+        this.totalDivers = newDivers.getTotalDivers();
     }
 
     /**

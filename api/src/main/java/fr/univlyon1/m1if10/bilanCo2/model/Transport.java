@@ -55,9 +55,9 @@ public class Transport {
     /**
      * Instantiates a new Transport.
      *
-     * @param annee             the annee
-     * @param semaine           the semaine
-     * @param id                the id
+     * @param annee          the annee
+     * @param semaine        the semaine
+     * @param id             the id
      * @param totalTransport the total transport
      */
     public Transport(final int annee, final int semaine, final int id,
@@ -66,6 +66,18 @@ public class Transport {
         this.semaine = semaine;
         this.id = id;
         this.totalTransport = totalTransport;
+    }
+
+    /**
+     * Instantiates a new Transport.
+     *
+     * @param newTransport the new transport
+     */
+    public  Transport(final Transport newTransport) {
+        this.annee = newTransport.getAnnee();
+        this.semaine = newTransport.getSemaine();
+        this.id = newTransport.getId();
+        this.totalTransport = newTransport.getTotalTransport();
     }
 
     /**

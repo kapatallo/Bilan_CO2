@@ -65,6 +65,18 @@ public class QuestionnaireHebdo {
     }
 
     /**
+     * Instantiates a new Questionnaire hebdo.
+     *
+     * @param newQuestionnaireHebdo the new questionnaire hebdo
+     */
+    public  QuestionnaireHebdo(final QuestionnaireHebdo newQuestionnaireHebdo) {
+        this.annee = newQuestionnaireHebdo.getAnnee();
+        this.semaine = newQuestionnaireHebdo.getSemaine();
+        this.id = newQuestionnaireHebdo.getId();
+        this.totalEmission = newQuestionnaireHebdo.getTotalEmission();
+    }
+
+    /**
      * Gets annee.
      *
      * @return the annee

@@ -55,9 +55,9 @@ public class Logement {
     /**
      * Instantiates a new Logement.
      *
-     * @param annee             the annee
-     * @param semaine           the semaine
-     * @param id                the id
+     * @param annee         the annee
+     * @param semaine       the semaine
+     * @param id            the id
      * @param totalLogement the total logement
      */
     public Logement(final int annee, final int semaine, final int id,
@@ -66,6 +66,18 @@ public class Logement {
         this.semaine = semaine;
         this.id = id;
         this.totalLogement = totalLogement;
+    }
+
+    /**
+     * Instantiates a new Logement.
+     *
+     * @param newLogement the new logement
+     */
+    public  Logement(final Logement newLogement) {
+        this.annee = newLogement.getAnnee();
+        this.semaine = newLogement.getSemaine();
+        this.id = newLogement.getId();
+        this.totalLogement = newLogement.getTotalLogement();
     }
 
     /**

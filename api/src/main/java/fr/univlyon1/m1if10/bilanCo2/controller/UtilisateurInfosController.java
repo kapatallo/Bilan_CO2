@@ -1,6 +1,5 @@
 package fr.univlyon1.m1if10.bilanCo2.controller;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -13,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import io.swagger.v3.oas.annotations.Operation;
@@ -85,9 +83,11 @@ public class UtilisateurInfosController {
                     @ApiResponse(responseCode = "200", description = "Successful operation"),
                     @ApiResponse(responseCode = "400", description = "Bad request")
             })
-    public ResponseEntity<UtilisateurInfos> createUser(@RequestBody final UtilisateurInfos utilisateurInfos) {
+    public ResponseEntity<UtilisateurInfos> createUser(@RequestBody final
+                                                           UtilisateurInfos utilisateurInfos) {
         try {
-            UtilisateurInfos resUsers = utilisateurInfosRepository.save(new UtilisateurInfos(utilisateurInfos));
+            UtilisateurInfos resUsers = utilisateurInfosRepository.save(new
+                    UtilisateurInfos(utilisateurInfos));
             logger.info("creating UtilisateurInfos...");
             return new ResponseEntity<>(resUsers, HttpStatus.CREATED);
         } catch (Exception e) {
