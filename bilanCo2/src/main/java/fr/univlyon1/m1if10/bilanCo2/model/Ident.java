@@ -1,11 +1,10 @@
 package fr.univlyon1.m1if10.bilanCo2.model;
 
-import jakarta.persistence.ForeignKey;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-
 import java.io.Serializable;
 
+/**
+ * The type Ident.
+ */
 public class Ident implements Serializable {
 
     private int annee;
@@ -14,36 +13,76 @@ public class Ident implements Serializable {
 
     private int id;
 
-    public Ident(int annee, int semaine, int id) {
+    /**
+     * Instantiates a new Ident.
+     *
+     * @param annee   the annee
+     * @param semaine the semaine
+     * @param id      the id
+     */
+    public Ident(final int annee, final int semaine, final int id) {
         this.annee = annee;
         this.semaine = semaine;
         this.id = id;
     }
 
+    /**
+     * Instantiates a new Ident.
+     */
     public Ident() {
     }
 
+    /**
+     * Gets annee.
+     *
+     * @return the annee
+     */
     public int getAnnee() {
         return annee;
     }
 
-    public void setAnnee(int annee) {
+    /**
+     * Sets annee.
+     *
+     * @param annee the annee
+     */
+    public void setAnnee(final int annee) {
         this.annee = annee;
     }
 
+    /**
+     * Gets semaine.
+     *
+     * @return the semaine
+     */
     public int getSemaine() {
         return semaine;
     }
 
-    public void setSemaine(int semaine) {
+    /**
+     * Sets semaine.
+     *
+     * @param semaine the semaine
+     */
+    public void setSemaine(final int semaine) {
         this.semaine = semaine;
     }
 
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
+    /**
+     * Sets id.
+     *
+     * @param id the id
+     */
+    public void setId(final int id) {
         this.id = id;
     }
 }

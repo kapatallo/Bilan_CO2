@@ -65,6 +65,11 @@ public class UtilisateurInfos {
         this.habAgglo = habAgglo;
     }
 
+    /**
+     * Instantiates a new Utilisateur infos.
+     *
+     * @param newUtilisateurInfos the new utilisateur infos
+     */
     public  UtilisateurInfos(final UtilisateurInfos newUtilisateurInfos) {
         this.idui = newUtilisateurInfos.getIdui();
         this.id = newUtilisateurInfos.getId();

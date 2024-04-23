@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-import fr.univlyon1.m1if10.bilanCo2.model.Utilisateur;
 import fr.univlyon1.m1if10.bilanCo2.model.UtilisateurInfos;
 import fr.univlyon1.m1if10.bilanCo2.repository.UtilisateurInfosRepository;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -45,6 +44,11 @@ public class UtilisateurInfosController {
         this.utilisateurInfosRepository = utilisateurInfosRepository;
     }
 
+    /**
+     * Gets all user infos.
+     *
+     * @return the all user infos
+     */
     @GetMapping(value = "/", produces = {"application/json"})
     @Operation(summary = "Get all UtilisateurInfos in json format",
             tags = "Operation REST",
