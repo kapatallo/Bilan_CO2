@@ -1,6 +1,6 @@
 import { useState } from "react";
 import './WeeklyPopup.css'; 
-import FormQuestions from "../FirstFormPage/FirstFormQuestions";
+import FormQuestions from "./FormQuestions";
 export default function WeeklyPopup({ show, onClose }) {
   
   const questions = require('./questions.json');
