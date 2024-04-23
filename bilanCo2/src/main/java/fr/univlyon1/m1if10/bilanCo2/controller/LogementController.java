@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  */
 //@CrossOrigin(origins = "http://localhost:8080")
 @RestController
-@RequestMapping("/utilisateur/logement")
+@RequestMapping("/utilisateur/questionnaireHebdo/logement")
 public class LogementController {
 
     private final Logger logger = Logger.getLogger(getClass().getName());
@@ -53,7 +53,8 @@ public class LogementController {
                     @ApiResponse(responseCode = "200",
                             description = "Successful operation", content = {
                             @Content(mediaType = "application/json")
-                    })
+                    }),
+                    @ApiResponse(responseCode = "500", description = "Bad request")
             })
     public ResponseEntity<List<Logement>> getAllUserLogement() {
         try {
@@ -77,8 +78,7 @@ public class LogementController {
                             description = "Successful operation", content = {
                             @Content(mediaType = "application/json")
                     }),
-                    @ApiResponse(responseCode = "400",
-                            description = "Bad request", content = @Content())
+                    @ApiResponse(responseCode = "500", description = "Bad request")
             })
     public ResponseEntity<Logement> getUserLogementById(@PathVariable("id") final long id) {
         Optional<Logement> userLogementData = logementRepository.findById(id);
@@ -86,7 +86,7 @@ public class LogementController {
         if (userLogementData.isPresent()) {
             return new ResponseEntity<>(userLogementData.get(), HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -101,7 +101,7 @@ public class LogementController {
             tags = "Operation REST",
             responses = {
                     @ApiResponse(responseCode = "200", description = "Successful operation"),
-                    @ApiResponse(responseCode = "400", description = "Bad request")
+                    @ApiResponse(responseCode = "500", description = "Bad request")
             })
     public ResponseEntity<Logement> createUser(@RequestBody final
                                                            Logement logement) {

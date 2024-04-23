@@ -1,17 +1,13 @@
 package fr.univlyon1.m1if10.bilanCo2.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Table;
-import jakarta.persistence.Column;
-import jakarta.persistence.ForeignKey;
+import jakarta.persistence.*;
 
 /**
  * The type Logement.
  */
 @Entity
 @Table(name = "logement")
+@IdClass(Ident.class)
 public class Logement {
 
     @Id

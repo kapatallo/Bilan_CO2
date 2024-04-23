@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  */
 //@CrossOrigin(origins = "http://localhost:8080")
 @RestController
-@RequestMapping("/utilisateur/transport")
+@RequestMapping("/utilisateur/questionnaireHebdo/divers")
 public class DiversController {
 
     private final Logger logger = Logger.getLogger(getClass().getName());
@@ -53,7 +53,8 @@ public class DiversController {
                     @ApiResponse(responseCode = "200",
                             description = "Successful operation", content = {
                             @Content(mediaType = "application/json")
-                    })
+                    }),
+                    @ApiResponse(responseCode = "500", description = "Bad request")
             })
     public ResponseEntity<List<Divers>> getAllUserDivers() {
         try {
@@ -77,8 +78,7 @@ public class DiversController {
                             description = "Successful operation", content = {
                             @Content(mediaType = "application/json")
                     }),
-                    @ApiResponse(responseCode = "400",
-                            description = "Bad request", content = @Content())
+                    @ApiResponse(responseCode = "500", description = "Bad request")
             })
     public ResponseEntity<Divers> getUserDiversById(@PathVariable("id") final long id) {
         Optional<Divers> userDiversData = diversRepository.findById(id);
@@ -86,7 +86,7 @@ public class DiversController {
         if (userDiversData.isPresent()) {
             return new ResponseEntity<>(userDiversData.get(), HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -101,7 +101,7 @@ public class DiversController {
             tags = "Operation REST",
             responses = {
                     @ApiResponse(responseCode = "200", description = "Successful operation"),
-                    @ApiResponse(responseCode = "400", description = "Bad request")
+                    @ApiResponse(responseCode = "500", description = "Bad request")
             })
     public ResponseEntity<Divers> createUser(@RequestBody final
                                              Divers divers) {

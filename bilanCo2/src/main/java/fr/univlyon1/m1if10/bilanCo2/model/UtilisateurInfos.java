@@ -65,6 +65,15 @@ public class UtilisateurInfos {
         this.habAgglo = habAgglo;
     }
 
+    public  UtilisateurInfos(final UtilisateurInfos newUtilisateurInfos) {
+        this.idui = newUtilisateurInfos.getIdui();
+        this.id = newUtilisateurInfos.getId();
+        this.cnit = newUtilisateurInfos.getCnit();
+        this.nbPersFoyer = newUtilisateurInfos.getNbPersFoyer();
+        this.surfaceLogement = newUtilisateurInfos.getSurfaceLogement();
+        this.habAgglo = newUtilisateurInfos.getHabAgglo();
+    }
+
     /**
      * Gets idui.
      *

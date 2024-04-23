@@ -54,7 +54,8 @@ public class QuestionnaireHebdoController {
                     @ApiResponse(responseCode = "200",
                             description = "Successful operation", content = {
                             @Content(mediaType = "application/json")
-                    })
+                    }),
+                    @ApiResponse(responseCode = "500", description = "Bad request")
             })
     public ResponseEntity<List<QuestionnaireHebdo>> getAllUserQuestionnaireHebdo() {
         try {
@@ -78,8 +79,7 @@ public class QuestionnaireHebdoController {
                             description = "Successful operation", content = {
                             @Content(mediaType = "application/json")
                     }),
-                    @ApiResponse(responseCode = "400",
-                            description = "Bad request", content = @Content())
+                    @ApiResponse(responseCode = "500", description = "Bad request")
             })
     public ResponseEntity<QuestionnaireHebdo> getUserQuestionnaireHebdoById(@PathVariable("id")
                                                                                 final long id) {
@@ -89,7 +89,7 @@ public class QuestionnaireHebdoController {
         if (userQuestionnaireHebdoData.isPresent()) {
             return new ResponseEntity<>(userQuestionnaireHebdoData.get(), HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -104,7 +104,7 @@ public class QuestionnaireHebdoController {
             tags = "Operation REST",
             responses = {
                     @ApiResponse(responseCode = "200", description = "Successful operation"),
-                    @ApiResponse(responseCode = "400", description = "Bad request")
+                    @ApiResponse(responseCode = "500", description = "Bad request")
             })
     public ResponseEntity<QuestionnaireHebdo> createUser(@RequestBody final
                                                            QuestionnaireHebdo questionnaireHebdo) {

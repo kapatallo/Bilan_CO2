@@ -56,7 +56,8 @@ public class UtilisateurController {
                     @ApiResponse(responseCode = "200",
                             description = "Successful operation", content = {
                             @Content(mediaType = "application/json")
-                    })
+                    }),
+                    @ApiResponse(responseCode = "500", description = "Bad request")
             })
     public ResponseEntity<List<Utilisateur>> getAllUser() {
         try {
@@ -80,8 +81,7 @@ public class UtilisateurController {
                             description = "Successful operation", content = {
                             @Content(mediaType = "application/json")
                     }),
-                    @ApiResponse(responseCode = "400",
-                            description = "Bad request", content = @Content())
+                    @ApiResponse(responseCode = "500", description = "Bad request")
             })
     public ResponseEntity<Utilisateur> getUserById(@PathVariable("id") final long id) {
         Optional<Utilisateur> userData = utilisateurRepository.findById(id);
@@ -89,7 +89,7 @@ public class UtilisateurController {
         if (userData.isPresent()) {
             return new ResponseEntity<>(userData.get(), HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -104,7 +104,7 @@ public class UtilisateurController {
             tags = "Operation REST",
             responses = {
                     @ApiResponse(responseCode = "200", description = "Successful operation"),
-                    @ApiResponse(responseCode = "400", description = "Bad request")
+                    @ApiResponse(responseCode = "500", description = "Bad request")
             })
     public ResponseEntity<Utilisateur> createUser(@RequestBody final Utilisateur utilisateur) {
         try {
