@@ -1,7 +1,7 @@
 // ConnectionForm.js
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './RegisterForm.css'; 
+import './ConnexionForm.css'; 
 import LogoName from '../../resources/logo/CarbonPrint.svg';
 import Logo from '../../resources/logo/Logo.svg';
 
