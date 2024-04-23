@@ -2,60 +2,57 @@
     "questions" : [
         [
             {
-                "questionText": "Avez-vous une voiture ?",
-                "type":"yesNo",
-                "type-list":"",
-                "unit":""
+                "questionText": "Combien de Kms avez-vous parcouru en voiture ?",
+                "type":"input",
+                "type-list":null,
+                "unit":"Km"
             },
             {
-                "questionText": "Quelle est la marque de votre voiture ?",
-                "type":"liste",
-                "type-list":"marque",
-                "unit":""
+                "questionText": "Combien de Kms avez-vous parcouru en transport en commun ?",
+                "type":"input",
+                "type-list":null,
+                "unit":"Km"
             },
             {
-                "questionText": "Quel est le modèle de votre voiture ?",
-                "type":"liste",
-                "type-list":"modèle",
-                "unit":""
+                "questionText": "Combien de Kms avez-vous parcouru en bus (long trajet) ?",
+                "type":"input",
+                "type-list":null,
+                "unit":"Km"
             },
             {
-                "questionText": "Quel est le type de moteur de votre véhicule ?",
-                "type":"liste",
-                "type-list":"moteur",
-                "unit":""
+                "questionText": "Combien de Kms avez-vous parcouru en train ?",
+                "type":"input",
+                "type-list":null,
+                "unit":"Km"
+            },
+
+            {
+                "questionText": "Combien de Kms avez-vous parcouru en avion ?",
+                "type":"input",
+                "type-list":null,
+                "unit":"Km"
+            }        
+        ],
+        [
+            {
+                "questionText": "Quelle a été votre consommation d'électricité ? ",
+                "type":"input",
+                "type-list":null,
+                "unit":"kWh"
+            },
+            {
+                "questionText": "Quelle a été votre consommation de gaz ?",
+                "type":"input",
+                "type-list":null,
+                "unit":"kWh"
             }
         ],
         [
             {
-                "questionText": "Quelle est la surface de votre logement ?",
+                "questionText": "Quelle a été votre consommation d'Internet ?",
                 "type":"input",
                 "type-list":null,
-                "unit":"m²"
-            },
-            {
-                "questionText": "Votre logement est-il un appartement ?",
-                "type":"yesNo",
-                "type-list":null,
-                "unit":""
-            },
-            {
-                "questionText": "Combien de personnes vivent chez vous ?",
-                "type":"input",
-                "type-list":null,
-                "unit":""
-            },
-            {
-                "questionText": "Quel est l'âge de votre logement ?",
-                "type":"input",
-                "type-list":null,
-                "unit":"an(s)"
-            },
-            {
-                "questionText": "Quelle est la consommation anuelle d'électricité de votre foyer ?",
-                "type":"input",
-                "type-list":null,
-                "unit":"kWh"
+                "unit":"Go"
             }
         ]
     ]
