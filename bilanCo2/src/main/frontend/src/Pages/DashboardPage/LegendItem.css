@@ -1,0 +1,24 @@
+.legend-item{
+display: flex;
+width:150px;
+margin: 5px;
+}
+.legend-text{
+display: flex;
+flex-direction: column;
+margin-left: 10px;
+}
+.legend-color{
+width: 17px;
+height: 17px;
+border-radius: 50px;
+margin-top: 5px;
+
+}
+.legend-label{
+color: #7C7C82;
+}
+.legend-value{
+align-self: flex-start;
+color: #1F1E3D ;
+}

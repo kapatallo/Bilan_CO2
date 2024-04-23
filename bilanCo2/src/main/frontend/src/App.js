@@ -1,16 +1,30 @@
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import RegisterForm from './Pages/RegisterPage/RegisterForm.jsx';
+import DashboardPage from './Pages/DashboardPage/DashboardPage.jsx';
+import SettingPage from './Pages/SettingPage/SettingPage.jsx';
+import ComparisonPage from './Pages/ComparisonPage/ComparisonPage.jsx';
+import FirstFormPage from './Pages/FirstFormPage/FirstFormPage.jsx';
+import ConnexionForm from './Pages/ConnexionPage/ConnexionForm.jsx';
 import './App.css';
-import NavBar from './NavBar.jsx';
-import Hello from './Hello.jsx'
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <NavBar></NavBar>
-        <Hello></Hello>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<RegisterForm />} />
+          <Route path="/FirstForm"  element={<FirstFormPage />} />
+          <Route path="/Dashboard" element={<DashboardPage />} />
+          <Route path="/Settings" element={<SettingPage />} />
+          <Route path="/Comparison" element={<ComparisonPage />} />
+          <Route path="/Login" element={<ConnexionForm />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
 export default App;
+

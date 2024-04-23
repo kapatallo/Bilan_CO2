@@ -1,0 +1,26 @@
+.legends{
+display: flex;
+flex-direction: column;
+position: relative;
+top:50px;
+margin-left: 20px;
+}
+.doughnut{
+    display: flex;
+width: 60%;
+}
+.doughnut-chart{
+position: relative;
+top:30px;
+padding: 30px;
+margin-left: 20px;
+}
+.doughnut-center-texte{
+    position: relative;
+    color: #21213D;
+    font-size: 16px;
+    font-weight: 600;
+    right: 327px;
+    top: 135px;
+    height: 20px;
+}
