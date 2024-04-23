@@ -1,12 +1,13 @@
 package fr.univlyon1.m1if10.bilanCo2.repository;
 
+import fr.univlyon1.m1if10.bilanCo2.model.Logement;
 import fr.univlyon1.m1if10.bilanCo2.model.Utilisateur;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 
 /**
- * The interface Transport repository.
+ * The interface Logement repository.
  */
 @Component
-public interface TransportRepository  extends JpaRepository<Utilisateur, Long> {
+public interface LogementRepository extends JpaRepository<Logement, Long> {
 }

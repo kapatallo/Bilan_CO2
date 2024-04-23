@@ -1,12 +1,13 @@
 package fr.univlyon1.m1if10.bilanCo2.repository;
 
 import fr.univlyon1.m1if10.bilanCo2.model.Utilisateur;
+import fr.univlyon1.m1if10.bilanCo2.model.UtilisateurInfos;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 
 /**
- * The interface Alimentation repository.
+ * The interface Utilisateur infos repository.
  */
 @Component
-public interface AlimentationRepository  extends JpaRepository<Utilisateur, Long> {
+public interface UtilisateurInfosRepository  extends JpaRepository<UtilisateurInfos, Long> {
 }
