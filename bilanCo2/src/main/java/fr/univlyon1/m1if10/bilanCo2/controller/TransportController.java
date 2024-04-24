@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  */
 //@CrossOrigin(origins = "http://localhost:8080")
 @RestController
-@RequestMapping("/utilisateur/transport")
+@RequestMapping("/utilisateur/questionnaireHebdo/transport")
 public class TransportController {
 
     private final Logger logger = Logger.getLogger(getClass().getName());
@@ -53,7 +53,8 @@ public class TransportController {
                     @ApiResponse(responseCode = "200",
                             description = "Successful operation", content = {
                             @Content(mediaType = "application/json")
-                    })
+                    }),
+                    @ApiResponse(responseCode = "500", description = "Bad request")
             })
     public ResponseEntity<List<Transport>> getAllUserTransport() {
         try {
@@ -77,8 +78,7 @@ public class TransportController {
                             description = "Successful operation", content = {
                             @Content(mediaType = "application/json")
                     }),
-                    @ApiResponse(responseCode = "400",
-                            description = "Bad request", content = @Content())
+                    @ApiResponse(responseCode = "500", description = "Bad request")
             })
     public ResponseEntity<Transport> getUserTransportById(@PathVariable("id") final long id) {
         Optional<Transport> userTransportData = transportRepository.findById(id);
@@ -86,7 +86,7 @@ public class TransportController {
         if (userTransportData.isPresent()) {
             return new ResponseEntity<>(userTransportData.get(), HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -101,7 +101,7 @@ public class TransportController {
             tags = "Operation REST",
             responses = {
                     @ApiResponse(responseCode = "200", description = "Successful operation"),
-                    @ApiResponse(responseCode = "400", description = "Bad request")
+                    @ApiResponse(responseCode = "500", description = "Bad request")
             })
     public ResponseEntity<Transport> createUser(@RequestBody final
                                                 Transport transport) {

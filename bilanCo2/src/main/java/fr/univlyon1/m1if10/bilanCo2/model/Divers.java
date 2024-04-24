@@ -1,10 +1,11 @@
 package fr.univlyon1.m1if10.bilanCo2.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Entity; // for Spring Boot 3
 import jakarta.persistence.Table;
+import jakarta.persistence.Id;
 import jakarta.persistence.Column;
+import jakarta.persistence.IdClass;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ForeignKey;
 
 /**
@@ -12,6 +13,7 @@ import jakarta.persistence.ForeignKey;
  */
 @Entity
 @Table(name = "divers")
+@IdClass(Ident.class)
 public class Divers {
 
     @Id
