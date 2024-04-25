@@ -86,7 +86,8 @@ public class QuestionnaireHebdoController {
                                                                                 final Ident ident) {
 
         Optional<QuestionnaireHebdo> userQuestionnaireHebdoData =
-                questionnaireHebdoRepository.findByIdent(ident.getAnnee(), ident.getSemaine(), ident.getId());
+                questionnaireHebdoRepository.findByIdent(ident.getAnnee(), ident.getSemaine(),
+                        ident.getId());
 
         if (userQuestionnaireHebdoData.isPresent()) {
             return new ResponseEntity<>(userQuestionnaireHebdoData.get(), HttpStatus.OK);

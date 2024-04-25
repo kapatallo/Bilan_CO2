@@ -82,7 +82,8 @@ public class LogementController {
                     @ApiResponse(responseCode = "500", description = "Bad request")
             })
     public ResponseEntity<Logement> getUserLogementById(@PathVariable("ident") final Ident ident) {
-        Optional<Logement> userLogementData = logementRepository.findByIdent(ident.getAnnee(), ident.getSemaine(), ident.getId());
+        Optional<Logement> userLogementData = logementRepository.findByIdent(ident.getAnnee(),
+                ident.getSemaine(), ident.getId());
 
         if (userLogementData.isPresent()) {
             return new ResponseEntity<>(userLogementData.get(), HttpStatus.OK);

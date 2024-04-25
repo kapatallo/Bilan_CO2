@@ -81,8 +81,10 @@ public class AlimentationController {
                     }),
                     @ApiResponse(responseCode = "500", description = "Bad request")
             })
-    public ResponseEntity<Alimentation> getUserAlimentationById(@PathVariable("ident") final Ident ident) {
-        Optional<Alimentation> userAlimentationData = alimentationRepository.findByIdent(ident.getAnnee(), ident.getSemaine(), ident.getId());
+    public ResponseEntity<Alimentation> getUserAlimentationById(@PathVariable("ident")
+                                                                    final Ident ident) {
+        Optional<Alimentation> userAlimentationData = alimentationRepository.findByIdent(
+                ident.getAnnee(), ident.getSemaine(), ident.getId());
 
         if (userAlimentationData.isPresent()) {
             return new ResponseEntity<>(userAlimentationData.get(), HttpStatus.OK);

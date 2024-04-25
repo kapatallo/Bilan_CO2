@@ -15,6 +15,13 @@ import java.util.Optional;
 @Component
 public interface UtilisateurRepository extends JpaRepository<Utilisateur, Long> {
 
+    /**
+     * Find by mail mdp optional.
+     *
+     * @param email the email
+     * @param mdp   the mdp
+     * @return the optional
+     */
     @Query("SELECT U FROM Utilisateur U WHERE U.email=:email AND U.mdp=:mdp")
     Optional<Utilisateur> findByMailMdp(@Param("email") String email, @Param("mdp") String mdp);
 }

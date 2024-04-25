@@ -82,7 +82,8 @@ public class DiversController {
                     @ApiResponse(responseCode = "500", description = "Bad request")
             })
     public ResponseEntity<Divers> getUserDiversById(@PathVariable("ident") final Ident ident) {
-        Optional<Divers> userDiversData = diversRepository.findByIdent(ident.getAnnee(), ident.getSemaine(), ident.getId());
+        Optional<Divers> userDiversData = diversRepository.findByIdent(ident.getAnnee(),
+                ident.getSemaine(), ident.getId());
 
         if (userDiversData.isPresent()) {
             return new ResponseEntity<>(userDiversData.get(), HttpStatus.OK);

@@ -81,8 +81,10 @@ public class TransportController {
                     }),
                     @ApiResponse(responseCode = "500", description = "Bad request")
             })
-    public ResponseEntity<Transport> getUserTransportById(@PathVariable("ident") final Ident ident) {
-        Optional<Transport> userTransportData = transportRepository.findByIdent(ident.getAnnee(), ident.getSemaine(), ident.getId());
+    public ResponseEntity<Transport> getUserTransportById(@PathVariable("ident")
+                                                              final Ident ident) {
+        Optional<Transport> userTransportData = transportRepository.findByIdent(
+                ident.getAnnee(), ident.getSemaine(), ident.getId());
 
         if (userTransportData.isPresent()) {
             return new ResponseEntity<>(userTransportData.get(), HttpStatus.OK);
