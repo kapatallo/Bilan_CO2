@@ -1,0 +1,39 @@
+
+.food-search input{
+border: 0px;
+background-color: white;
+}
+.food-search input:focus{
+border: 0px;
+background-color: white;
+}
+
+.food-search{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 20px;
+    margin-left: 20px;
+}
+.css-clttge-MuiAutocomplete-root{
+    margin-right: 20px;
+    width: 60%;
+}
+
+.css-clttge-MuiAutocomplete-root ~ div{
+position: relative;
+bottom: 7px;
+display: flex;
+align-items: center;
+}
+#quantity {
+    width: 70px;
+    position: relative;
+
+} 
+#ajouter-food{ 
+    width: 90px;
+    position: relative;
+    height: 55px;
+    
+}

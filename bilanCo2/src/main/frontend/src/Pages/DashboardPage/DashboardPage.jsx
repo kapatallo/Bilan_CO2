@@ -16,13 +16,27 @@ import WeeklyPopup from "./WeeklyPopup"
 export default function DashboardPage() {
 
     const [showPopup, setShowPopup] = useState(false);
-
+    const [ weeklyDone, setWeeklyDone]=useState(false)
     const handleOpenPopup = () => {
       setShowPopup(true);
     };
   
     const handleClosePopup = () => {
       setShowPopup(false);
+    };
+
+    const handleUpdateEmissionsMap = (emissionsMap) => {
+        if (!weeklyDone){
+            console.log("Emissions Map Updated:", emissionsMap);
+        //// ici on a l'emissionsMap qui est retourné aprés que le questionaire est terminé 
+        /// mettre la requete POSTE ICI
+        //exemple de emissionsMap : {transport: 0, logement: 0, alimentation: 0.883, divers: 3}
+        setWeeklyDone(true)
+        }
+        else{
+            // ne pas envoyer de requete 
+        }
+
     };
 
     const username = "Jawad Mecheri";
@@ -38,7 +52,7 @@ export default function DashboardPage() {
     return (
         
         <div className="dashboard-page">
-            <WeeklyPopup show={showPopup} onClose={handleClosePopup} />
+            <WeeklyPopup show={showPopup} onClose={handleClosePopup} onUpdateEmissionsMap={handleUpdateEmissionsMap} />
             <NavBar />
             <div className="dashboard-content">
                 <p className="header-page">Pages / <span className="header-page-name">Dashboard</span></p>
@@ -96,7 +110,7 @@ export default function DashboardPage() {
                             <p className='diff-text'>
                                 {diff > 0 ? `Incrementation` : `Decrementation`}
                             </p>                            
-                        <p className='diff_percentage_text'><h1 className="diff_percentage_text_title">Ce mois-ci</h1>{data_chart[7]} kgs le mois passé à la même semaine du mois.</p>
+                        <div className='diff_percentage_text'><h1 className="diff_percentage_text_title">Ce mois-ci</h1>{data_chart[7]} kgs le mois passé à la même semaine du mois.</div>
                         </div>  
 
                     </div>
