@@ -1,4 +1,4 @@
-import React,{ useState } from 'react';
+import React,{ useState,useEffect } from 'react';
 import './DashboardPage.css'; 
 import NavBar from '../../NavBar/NavBar';
 import WelcomeCard from './WelcomeCard';
@@ -16,7 +16,7 @@ import WeeklyPopup from "./WeeklyPopup"
 export default function DashboardPage() {
 
     const [showPopup, setShowPopup] = useState(false);
-
+    const [ weeklyDone, setWeeklyDone]=useState(false)
     const handleOpenPopup = () => {
       setShowPopup(true);
     };
@@ -25,20 +25,87 @@ export default function DashboardPage() {
       setShowPopup(false);
     };
 
-    const username = "Jawad Mecheri";
-    const top = 40;
-    const carboneEmit= 434 ;
-    const co2Km = 2; 
-    const choix = 80;
-    const data_chart = [100, 400, 300, 800, 400, 200, 400,300];
-    const quota = 86;
-    const diff = 84;
+    const handleUpdateEmissionsMap = (emissionsMap) => {
+        if (!weeklyDone){
+            console.log("Emissions Map Updated:", emissionsMap);
+        //// ici on a l'emissionsMap qui est retourné aprés que le questionaire est terminé 
+        /// mettre la requete POSTE ICI
+        //exemple de emissionsMap : {transport: 0, logement: 0, alimentation: 0.883, divers: 3}
+        setWeeklyDone(true)
+        }
+        else{
+            // ne pas envoyer de requete 
+        }
+
+    };
+
+    // co2 moyen emit par une personne par mois en france
+    const averageMonthlyEmission = 741;
+    
+    const calculateTopPercentile = (emission) => {
+        // The closer the emission to 0, the better the ranking
+        // We will use a simple linear approximation here for the example
+        let topPercentile = ((emission / averageMonthlyEmission) * 100);
+        topPercentile = Math.max(0, topPercentile); // Ensure it doesn't go below 0
+        topPercentile = Math.min(topPercentile, 100); // Ensure it doesn't exceed 100
+        return topPercentile.toFixed(2); // Format to 2 decimal places
+    };
+
+    // Function to calculate the quota based on the average of the last four values in data_chart
+    const calculateQuota = (emissions, dataPoints) => {
+        const lastFourValues = dataPoints.slice(-4);
+        const average = lastFourValues.reduce((acc, val) => acc + val, 0) / lastFourValues.length;
+        const quotaPercentage = (emissions / average) * 100;
+        return quotaPercentage.toFixed(0); // Convert to a percentage and format
+    };
+
+    // Function to calculate the difference percentage between the last two values of data_chart
+    const calculateDifference = (dataPoints) => {
+        if (dataPoints.length < 2) {
+            return 0; // Cannot calculate difference with less than two data points
+        }
+        const lastValue = dataPoints[dataPoints.length - 1];
+        const secondLastValue = dataPoints[dataPoints.length - 2];
+
+        if (secondLastValue === 0) {
+            return lastValue > 0 ? 100 : 0; // If last is greater than 0 and second last is 0, it's a 100% increase
+        }
+        
+        const diffPercentage = ((lastValue - secondLastValue) / secondLastValue) * 100;
+        return diffPercentage.toFixed(0); // Convert to a percentage and format
+    };
+
+    const [username, setUsername] = useState("Jawad Mecheri");
+    const [carboneEmit, setCarboneEmit] = useState(34);
+    const [top, setTop] = useState(calculateTopPercentile(carboneEmit));
+    const [co2Km, setCo2Km] = useState(2);
+    const [choix, setChoix] = useState(80);
+    const [data_chart, setData_chart] = useState([100, 400, 300, 800, 400, 200, 400, 300]);
+    const [quota, setQuota] = useState(() => calculateQuota(carboneEmit, data_chart));
+    const [diff, setDiff] = useState(() => calculateDifference(data_chart));
+    const [data_repartition, setData_repartition] = useState([10, 40, 30, 20]);
+
     const doughnutColor_diff = diff >= 0 ? "#71DDB1" : "#DD7171";
+
+    
+    // If 'carboneEmit' changes, update 'top'
+    useEffect(() => {
+        setTop(calculateTopPercentile(carboneEmit));
+    }, [carboneEmit]);
+
+    // Recalculate quota when carboneEmit or data_chart changes
+    useEffect(() => {
+        setQuota(calculateQuota(carboneEmit, data_chart));
+    }, [carboneEmit, data_chart]);
+    
+        useEffect(() => {
+        setDiff(calculateDifference(data_chart));
+    }, [data_chart]);
 
     return (
         
         <div className="dashboard-page">
-            <WeeklyPopup show={showPopup} onClose={handleClosePopup} />
+            <WeeklyPopup show={showPopup} onClose={handleClosePopup} onUpdateEmissionsMap={handleUpdateEmissionsMap} />
             <NavBar />
             <div className="dashboard-content">
                 <p className="header-page">Pages / <span className="header-page-name">Dashboard</span></p>
@@ -73,7 +140,7 @@ export default function DashboardPage() {
                 <div className="emission-stats">
                     <div className="doughnut-container">
                         <h2 className='doughnut-title'>Répartition des émissions</h2>
-                        <DoughnutChartComponent />
+                        <DoughnutChartComponent data={data_repartition} />
                     </div>
                     <div className="emission-percentages">
                         <div className="semicircle-DoughnutChart">
@@ -96,7 +163,7 @@ export default function DashboardPage() {
                             <p className='diff-text'>
                                 {diff > 0 ? `Incrementation` : `Decrementation`}
                             </p>                            
-                        <p className='diff_percentage_text'><h1 className="diff_percentage_text_title">Ce mois-ci</h1>{data_chart[7]} kgs le mois passé à la même semaine du mois.</p>
+                        <div className='diff_percentage_text'><h1 className="diff_percentage_text_title">Cette semaine</h1>{data_chart[6]} kgs la semaine passé.</div>
                         </div>  
 
                     </div>
