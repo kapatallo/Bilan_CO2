@@ -1,22 +1,33 @@
 .settings-container {
-    max-width: 400px;
+    max-width: 100%;
     margin-left: 20px;
-    padding-left: 29px;
+    padding-left: 140px;
     text-align: left;
     font-family: 'Arial', sans-serif;
     font-size: 14px;
   }
 
-  h2 {
-    text-align: left;
-    margin-left: 20px;
-    padding-left: 29px;
+  .settings-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    padding-left: 35px;
+    padding-right: 35px;
+    flex-grow: 1; 
   }
 
-  h1 {
-    text-align: center;
-    position: flex;
+  .h-settings {
+    padding-top: 40px;
+    margin-left: 25px;
+    padding-left: 130px;
+    position: relative;
+    bottom : 700px;
+    font-size: 25px;
+    font-weight: bold;
   }
+
+ 
 
   .input-container-button input[type="submit"] {
     margin-right: 20px; /* Add margin between buttons */
@@ -26,8 +37,11 @@
     max-width: max-content;
     margin-bottom: 20px;
     display: block ruby;
-    margin-left: 50px;
+    margin-left: 25px;
+    padding-left: 130px;
     padding-top: 20px;
+    position: relative;
+    bottom : 700px;
 }
 
   form .settings-container > li > label {
@@ -36,7 +50,9 @@
     font-size:18px;
     line-height:25px;
     margin-right:12px;
-    margin-bottom:0
+    margin-bottom:0;
+    position: relative;
+    bottom : 700px;
   }
 
   form .settings-container > li {
@@ -56,4 +72,21 @@
     border-style:solid;
     border-color:#b7bdd3;
     background-color:#f1f2f7;
+    position: relative;
+    bottom : 700px;
+  }
+
+  .header-page-name-settings {
+    color: #6E7191;
+  }
+
+  .header-page-settings {
+    color: #6e71918e;
+    font-size: 14px;
+    margin: 0px;
+      margin-left: 0px;
+    margin-left: 20px;
+    position: relative;
+    bottom : 690px;
+    left: 140px;
   }
