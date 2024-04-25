@@ -5,6 +5,7 @@ import DashboardPage from './Pages/DashboardPage/DashboardPage.jsx';
 import SettingPage from './Pages/SettingPage/SettingPage.jsx';
 import ComparisonPage from './Pages/ComparisonPage/ComparisonPage.jsx';
 import FirstFormPage from './Pages/FirstFormPage/FirstFormPage.jsx';
+import ConnexionForm from './Pages/ConnexionPage/ConnexionForm.jsx';
 import './App.css';
 
 
@@ -18,6 +19,7 @@ function App() {
           <Route path="/Dashboard" element={<DashboardPage />} />
           <Route path="/Settings" element={<SettingPage />} />
           <Route path="/Comparison" element={<ComparisonPage />} />
+          <Route path="/Login" element={<ConnexionForm />} />
         </Routes>
       </div>
     </Router>
