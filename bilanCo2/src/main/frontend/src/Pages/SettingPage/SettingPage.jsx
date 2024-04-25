@@ -26,31 +26,31 @@ export default function SettingPage() {
                             <label>
                                 <span>Nom :</span>
                             </label>
-                            <input type="text" name="name" value={inputValue.name} onChange={handleChange} />
+                            <input className='input-settings' type="text" name="name" value={inputValue.name} onChange={handleChange} />
                         </li>
                         <li>
                             <label>
                                 <span>Prénom :</span>
                             </label>
-                            <input type="text" name="firstnmame" value={inputValue.firstnmame} onChange={handleChange} />
+                            <input className='input-settings' type="text" name="firstnmame" value={inputValue.firstnmame} onChange={handleChange} />
                         </li>
                         <li>
                             <label>
                                 <span>E-mail :</span>
                             </label>
-                            <input type="email" name="email" value={inputValue.email} onChange={handleChange} />
+                            <input className='input-settings' type="email" name="email" value={inputValue.email} onChange={handleChange} />
                         </li>
                         <li>
                             <label>
                                 <span>Mot de passe :</span>
                             </label>
-                            <input type="password" name="mdp" value={inputValue.mdp} onChange={handleChange} />
+                            <input className='input-settings' type="password" name="mdp" value={inputValue.mdp} onChange={handleChange} />
                         </li>
                         <li>
                             <label>
                                 <span>Confirmer le mot de passe :</span>
                             </label>
-                            <input type="password" name="confmdp" value={inputValue.confmdp} onChange={handleChange} />
+                            <input className='input-settings' type="password" name="confmdp" value={inputValue.confmdp} onChange={handleChange} />
                         </li>
                     </ul>
                     <div className="input-container-button">

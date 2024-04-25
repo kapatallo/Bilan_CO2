@@ -61,9 +61,7 @@
     align-items:center;
   }
 
-  form input[type="text"], 
-    form input[type="password"],
-    form input[type="email"] {
+  .input-settings {
     max-width: max-content;
     padding:10px 12px;
     font-size:18px;
