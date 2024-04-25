@@ -18,8 +18,9 @@ public class UserDto {
 
     /**
      * Constructor with the param we need.
-     * @param email
-     * @param mdp
+     *
+     * @param email the email
+     * @param mdp   the mdp
      */
     @JsonCreator
     public UserDto(@JsonProperty("email") final String email,
@@ -28,19 +29,39 @@ public class UserDto {
         this.mdp = mdp;
     }
 
-        public String getemail() {
+    /**
+     * Gets .
+     *
+     * @return the
+     */
+    public String getemail() {
         return email;
     }
 
-        public void setemail(final String email) {
+    /**
+     * Sets .
+     *
+     * @param email the email
+     */
+    public void setemail(final String email) {
         this.email = email;
     }
 
-        public String getmdp() {
+    /**
+     * Gets .
+     *
+     * @return the
+     */
+    public String getmdp() {
         return mdp;
     }
 
-        public void setmdp(final String mdp) {
+    /**
+     * Sets .
+     *
+     * @param mdp the mdp
+     */
+    public void setmdp(final String mdp) {
         this.mdp = mdp;
     }
 

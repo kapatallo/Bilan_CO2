@@ -50,6 +50,15 @@ public class OperationController {
         this.utilisateurRepository = utilisateurRepository;
     }
 
+    /**
+     * Login json response entity.
+     *
+     * @param userDto the user dto
+     * @param origin  the origin
+     * @return the response entity
+     * @throws AuthenticationException the authentication exception
+     * @throws Exception               the exception
+     */
     @ResponseBody
     @PostMapping(value = "/login", consumes = {MediaType.APPLICATION_JSON_VALUE})
     @Operation(summary = "To let a user connect",
@@ -65,7 +74,8 @@ public class OperationController {
         if (userDto.getemail() == null || userDto.getmdp() == null) {
             throw new Exception("Il manque un paramètre");
         }
-        Optional<Utilisateur> user = utilisateurRepository.findByMailMdp(userDto.getemail(), userDto.getmdp());
+        Optional<Utilisateur> user = utilisateurRepository.findByMailMdp(userDto.getemail(),
+                userDto.getmdp());
         if (user.isPresent()) {
                 String token = generateToken(user.get().getId(), origin);
                 HttpHeaders headers = new HttpHeaders();
@@ -108,6 +118,15 @@ public class OperationController {
         }
     }
 
+    /**
+     * Logout response entity.
+     *
+     * @param jwt    the jwt
+     * @param origin the origin
+     * @return the response entity
+     * @throws AuthenticationException the authentication exception
+     * @throws Exception               the exception
+     */
     @PostMapping("/logout")
     @Operation(summary = "To let a user disconnect",
             tags = "Operation controller",
