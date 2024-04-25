@@ -26,6 +26,10 @@ bottom: 7px;
 display: flex;
 align-items: center;
 }
+.css-clttge-MuiAutocomplete-root  *{
+border: 0px;
+background-color: white;
+}
 #quantity {
     width: 70px;
     position: relative;
