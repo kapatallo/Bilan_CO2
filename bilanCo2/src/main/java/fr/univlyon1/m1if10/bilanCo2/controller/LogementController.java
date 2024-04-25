@@ -1,5 +1,6 @@
 package fr.univlyon1.m1if10.bilanCo2.controller;
 
+import fr.univlyon1.m1if10.bilanCo2.model.Ident;
 import fr.univlyon1.m1if10.bilanCo2.model.Logement;
 import fr.univlyon1.m1if10.bilanCo2.repository.LogementRepository;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -67,10 +68,10 @@ public class LogementController {
     /**
      * Gets user logement by id.
      *
-     * @param id the id
+     * @param ident the ident
      * @return the user logement by id
      */
-    @GetMapping(value = "/{id}", produces = {"application/json"})
+    @GetMapping(value = "/{ident}", produces = {"application/json"})
     @Operation(summary = "Get one userLogement in json format",
             tags = "Operation REST",
             responses = {
@@ -80,8 +81,8 @@ public class LogementController {
                     }),
                     @ApiResponse(responseCode = "500", description = "Bad request")
             })
-    public ResponseEntity<Logement> getUserLogementById(@PathVariable("id") final long id) {
-        Optional<Logement> userLogementData = logementRepository.findById(id);
+    public ResponseEntity<Logement> getUserLogementById(@PathVariable("ident") final Ident ident) {
+        Optional<Logement> userLogementData = logementRepository.findByIdent(ident.getAnnee(), ident.getSemaine(), ident.getId());
 
         if (userLogementData.isPresent()) {
             return new ResponseEntity<>(userLogementData.get(), HttpStatus.OK);

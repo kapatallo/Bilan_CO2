@@ -1,6 +1,7 @@
 package fr.univlyon1.m1if10.bilanCo2.controller;
 
 import fr.univlyon1.m1if10.bilanCo2.model.Divers;
+import fr.univlyon1.m1if10.bilanCo2.model.Ident;
 import fr.univlyon1.m1if10.bilanCo2.repository.DiversRepository;
 import io.swagger.v3.oas.annotations.media.Content;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,10 +68,10 @@ public class DiversController {
     /**
      * Gets user divers by id.
      *
-     * @param id the id
+     * @param ident the ident
      * @return the user divers by id
      */
-    @GetMapping(value = "/{id}", produces = {"application/json"})
+    @GetMapping(value = "/{ident}", produces = {"application/json"})
     @Operation(summary = "Get one userDivers in json format",
             tags = "Operation REST",
             responses = {
@@ -80,8 +81,8 @@ public class DiversController {
                     }),
                     @ApiResponse(responseCode = "500", description = "Bad request")
             })
-    public ResponseEntity<Divers> getUserDiversById(@PathVariable("id") final long id) {
-        Optional<Divers> userDiversData = diversRepository.findById(id);
+    public ResponseEntity<Divers> getUserDiversById(@PathVariable("ident") final Ident ident) {
+        Optional<Divers> userDiversData = diversRepository.findByIdent(ident.getAnnee(), ident.getSemaine(), ident.getId());
 
         if (userDiversData.isPresent()) {
             return new ResponseEntity<>(userDiversData.get(), HttpStatus.OK);
