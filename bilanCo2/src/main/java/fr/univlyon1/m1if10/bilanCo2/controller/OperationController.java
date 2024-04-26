@@ -31,7 +31,7 @@ import static fr.univlyon1.m1if10.bilanCo2.utils.JwtHelper.noLifeTimeToken;
 /**
  * The type Operation controller.
  */
-@CrossOrigin(origins = {"http://localhost:8080", "http://localhost:3000","http://localhost",
+@CrossOrigin(origins = {"http://localhost:8080", "http://localhost:3000", "http://localhost",
                         "https://192.168.75.51/api", "http://192.168.75.51",
                         "https://192.168.75.51"})
 @RestController
