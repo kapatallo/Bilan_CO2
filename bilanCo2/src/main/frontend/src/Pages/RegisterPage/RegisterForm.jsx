@@ -18,8 +18,6 @@ export default function RegisterForm() {
         "ddn":null,
     })
 
-    useEffect( () => console.log(registerData),[registerData]);
-
     const handleChange = (event) => {
         setRegisterData({
             ...registerData,
@@ -30,12 +28,22 @@ export default function RegisterForm() {
     const handleSubmit = (event) => {
         console.log(registerData);
 
-        // Futur post quand le back sera prêt
+        var newUserId;
 
-        /*axios.post('http://localhost:8080/', registerData)
+        axios.get('https://192.168.75.51/api/bilanco2/utilisateurs')
+        .then( (response) => {
+            // en cas de réussite de la requête
+            console.log(response);
+          })
+          .catch( (error) => {
+            // en cas d’échec de la requête
+            console.log(error);
+          })
+
+        axios.post('https://192.168.75.51/api/bilanco2/utilisateurs', registerData)
         .then((response) => {
             console.log(response);
-        })*/
+        })
         event.preventDefault();
         // Logique de validation du formulaire
         navigate('/dashboard'); 
@@ -73,8 +81,14 @@ export default function RegisterForm() {
 
                 <div className="input-container">
                     <label htmlFor="confirmedPwd">Confirmer le mot de passe:</label>
+                    <input 
+                    type="text" id="confmdp" name="confirmedPwd" required/>
+                </div>
+
+                <div className="input-container">
+                    <label htmlFor="pwd">Date de naissance:</label>
                     <input onChange={handleChange}
-                    type="text" id="ddn" name="confirmedPwd" required/>
+                    type="text" id="ddn" name="date_de_naissance" required/>
                 </div>
 
                 <div className="input-container">
