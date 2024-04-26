@@ -27,6 +27,12 @@ export default function FirstFormPage() {
   useEffect(() => {
     if (formPart.partText === "end") navigate("/Settings"); //quitter la page
   }, [formPart]);
+  const questions = require("./questions.json");
+
+  let navigate = useNavigate();
+  useEffect(() => {
+    if (formPart.partText === "end") navigate("/Dashboard"); //quitter la page
+  }, [formPart]);
 
   const NextStepButton = (props) => {
     return (

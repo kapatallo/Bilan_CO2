@@ -1559,7 +1559,7 @@ reservedProps.forEach(function (name) {
   null, // attributeNamespace
   false);
 }); // These are "enumerated" HTML attributes that accept "true" and "false".
-// In React, we let users pass `true` and `false` even though technically
+// In React, we let Utilisateur pass `true` and `false` even though technically
 // these aren't boolean attributes (they are coerced to strings).
 
 ['contentEditable', 'draggable', 'spellCheck', 'value'].forEach(function (name) {
@@ -1568,7 +1568,7 @@ reservedProps.forEach(function (name) {
   null, // attributeNamespace
   false);
 }); // These are "enumerated" SVG attributes that accept "true" and "false".
-// In React, we let users pass `true` and `false` even though technically
+// In React, we let Utilisateur pass `true` and `false` even though technically
 // these aren't boolean attributes (they are coerced to strings).
 // Since these are SVG attributes, their attribute names are case-sensitive.
 
@@ -8901,7 +8901,7 @@ function functionThatReturnsFalse() {
  *
  * These systems should generally use pooling to reduce the frequency of garbage
  * collection. The system should check `isPersistent` to determine whether the
- * event should be released into the pool after being dispatched. Users that
+ * event should be released into the pool after being dispatched. Utilisateur that
  * need a persisted event should invoke `persist`.
  *
  * Synthetic events (and subclasses) implement the DOM Level 3 Events API by
@@ -10498,9 +10498,9 @@ var SyntheticKeyboardEvent = SyntheticUIEvent.extend({
   keyCode: function (event) {
     // `keyCode` is the result of a KeyDown/Up event and represents the value of
     // physical keyboard key.
-    // The actual meaning of the value depends on the users' keyboard layout
+    // The actual meaning of the value depends on the Utilisateur' keyboard layout
     // which cannot be detected. Assuming that it is a US keyboard layout
-    // provides a surprisingly accurate mapping for US and European users.
+    // provides a surprisingly accurate mapping for US and European Utilisateur.
     // Due to this, it is left to the user to implement at this time.
     if (event.type === 'keydown' || event.type === 'keyup') {
       return event.keyCode;
@@ -28297,7 +28297,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*
 		 */
 		function ComplexRequest(properties) {
 			if (!(this instanceof ComplexRequest)) {
-				// in case users forget the 'new' don't mix into the interceptor
+				// in case Utilisateur forget the 'new' don't mix into the interceptor
 				return new ComplexRequest(properties);
 			}
 			mixin(this, properties);

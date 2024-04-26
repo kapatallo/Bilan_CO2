@@ -5,13 +5,13 @@ import LegendItem from './LegentItem';
 import './DoughnutChartComponent.css'; 
 
 
-export default function DoughnutChartComponent() {
+export default function DoughnutChartComponent(props) {
     const data = {
         labels: ['Transport', 'Alimentation', 'Logement', 'Divers'],
         datasets: [
             {
                 label: 'Répartition des émissions',
-                data: [40, 20, 30, 10], // Ces pourcentages devraient correspondre à vos données
+                data: props.data, // Ces pourcentages devraient correspondre à vos données
                 backgroundColor: [
                     '#DB48FF',
                     '#579AFF',
@@ -58,10 +58,10 @@ export default function DoughnutChartComponent() {
 
             <Doughnut className='doughnut-chart' data={data} options={options}/>
             <div className="legends">
-            <LegendItem color={"#DB48FF"} label={"Transport"} value={40}/>
-            <LegendItem color={"#579AFF"} label={"Alimentation"} value={20}/>
-            <LegendItem color={"#8146FF"} label={"Logement"} value={30}/>
-            <LegendItem color={"#FCDDEC"} label={"Divers"} value={10}/>
+            <LegendItem color={"#DB48FF"} label={"Transport"} value={props.data[0]}/>
+            <LegendItem color={"#579AFF"} label={"Alimentation"} value={props.data[1]}/>
+            <LegendItem color={"#8146FF"} label={"Logement"} value={props.data[2]}/>
+            <LegendItem color={"#FCDDEC"} label={"Divers"} value={props.data[3]}/>
             </div>
             <p className="doughnut-center-texte">CO2</p>
         </div>

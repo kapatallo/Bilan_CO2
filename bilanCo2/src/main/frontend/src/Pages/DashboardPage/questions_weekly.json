@@ -1,0 +1,84 @@
+{
+    "questions" : [
+        [
+            {
+                "id":"1",
+                "questionText": "Combien de kms avez-vous parcouru en voiture ?",
+                "type":"input",
+                "type-list":null,
+                "unit":"kms",
+                "co2":1
+            },
+            {
+                "id":"2",
+                "questionText": "Combien de kms avez-vous parcouru en transport en commun ?",
+                "type":"input",
+                "type-list":null,
+                "unit":"kms",
+                "co2":0.037
+
+            },
+            {   
+                "id":"3",
+                "questionText": "Combien de kms avez-vous parcouru en bus sur de longs trajets ?",
+                "type":"input",
+                "type-list":null,
+                "unit":"kms",
+                "co2":0.1
+
+            },
+            {
+                "id":"4",
+                "questionText": "Combien de kms avez-vous parcouru en avion?",
+                "type":"input",
+                "type-list":null,
+                "unit":"kms",
+                "co2":0.285
+
+            },
+            {
+                "id":"5",
+                "questionText": "Combien de kms avez-vous parcouru en train?",
+                "type":"input",
+                "type-list":null,
+                "unit":"kms",
+                "co2":0.33
+
+            }
+        ],
+        [
+            {
+                "id":"6",
+                "questionText": "Combien d'électricité consommée en kWh cette semaine ?",
+                "type":"input",
+                "type-list":null,
+                "unit":"kWh",
+                "co2":0.6
+            },
+            {
+                "id":"7",
+                "questionText": "Combien de gaz consommé cette semaine ?",
+                "type":"input",
+                "type-list":null,
+                "unit":"kWh",
+                "co2":0.185
+
+            }
+        ],
+        [
+
+        ],
+        [
+            {
+            "id":"8",
+            "questionText": "Combien de gigaoctets d'Internet avez-vous consommés cette semaine ?",
+            "type": "input",
+            "type-list": null,
+            "unit": "Go",
+            "co2":3
+
+            }
+
+        ]
+    ]
+}
