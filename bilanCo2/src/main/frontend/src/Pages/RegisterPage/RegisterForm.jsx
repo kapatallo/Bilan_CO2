@@ -11,6 +11,7 @@ export default function RegisterForm() {
     let navigate = useNavigate();
     
     const [registerData, setRegisterData] = useState({
+        "id":0,
         "nom":null,
         "prenom":null,
         "email":null,

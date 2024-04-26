@@ -21,13 +21,7 @@ export default function FirstFormPage() {
   });
   const [nextStepText, setNextStepText] = useState("Logement");
 
-  const questions = require("./questions.json");
-
-  let navigate = useNavigate();
-  useEffect(() => {
-    if (formPart.partText === "end") navigate("/Settings"); //quitter la page
-  }, [formPart]);
-  const questions = require("./questions.json");
+  const questions = require("./firstQuestions.json");
 
   let navigate = useNavigate();
   useEffect(() => {

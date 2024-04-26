@@ -1,4 +1,5 @@
 import React,{ useState,useEffect } from 'react';
+import axios from 'axios';
 import './DashboardPage.css'; 
 import NavBar from '../../NavBar/NavBar';
 import WelcomeCard from './WelcomeCard';
@@ -28,9 +29,15 @@ export default function DashboardPage() {
     const handleUpdateEmissionsMap = (emissionsMap) => {
         if (!weeklyDone){
             console.log("Emissions Map Updated:", emissionsMap);
-        //// ici on a l'emissionsMap qui est retourné aprés que le questionaire est terminé 
-        /// mettre la requete POSTE ICI
-        //exemple de emissionsMap : {transport: 0, logement: 0, alimentation: 0.883, divers: 3}
+            axios.post('https://192.168.75.51/api/bilanco2/utilisateurs', emissionsMap)
+            .then((response) => {
+                console.log(response);
+            },{
+                headers: {
+                    'mode': "cors"
+                }
+            })
+
         setWeeklyDone(true)
         }
         else{
@@ -76,6 +83,7 @@ export default function DashboardPage() {
     };
 
     const [username, setUsername] = useState("Jawad Mecheri");
+    const [weekNb,setWeekNb] = useState(7);
     const [carboneEmit, setCarboneEmit] = useState(34);
     const [top, setTop] = useState(calculateTopPercentile(carboneEmit));
     const [co2Km, setCo2Km] = useState(2);
@@ -83,7 +91,104 @@ export default function DashboardPage() {
     const [data_chart, setData_chart] = useState([100, 400, 300, 800, 400, 200, 400, 300]);
     const [quota, setQuota] = useState(() => calculateQuota(carboneEmit, data_chart));
     const [diff, setDiff] = useState(() => calculateDifference(data_chart));
+
+    const [transportEmit,setTransportEmit] = useState(0);
+    const [logementEmit,setLogementEmit] = useState(0);
+    const [aliementationEmit,setAliementationEmit] = useState(0);
+    const [diversEmit,setDiversEmit] = useState(0);
+
     const [data_repartition, setData_repartition] = useState([10, 40, 30, 20]);
+
+    useEffect( () => {
+
+        //Semaines stockées dans l'ordre décroissant : 
+        // Case 0 : semaine actuelle
+        // Case 1 : semaine dernière
+        // ...
+        var monthlyCarboneEmit = [
+            {
+                transport: 0,
+                logement: 0,
+                alimentation: 0,
+                divers: 0
+            },
+            {
+                transport: 0,
+                logement: 0,
+                alimentation: 0,
+                divers: 0
+            },
+            {
+                transport: 0,
+                logement: 0,
+                alimentation: 0,
+                divers: 0
+            },
+            {
+                transport: 0,
+                logement: 0,
+                alimentation: 0,
+                diverse: 0
+            }
+              
+        ]
+        
+        monthlyCarboneEmit.map( (weeklyCarbonEmit) => {
+            var tmpWeekNb = weekNb
+            const weeklyCarbopnEmitValues = Object.keys(weeklyCarbonEmit).map ( (key) => {
+                axios.get(`https://192.168.75.51/api/bilanco2/${key}s/search/findByIdent`,
+                { params: {
+                    annee:2024,
+                    semaine:tmpWeekNb,
+                    id:0
+                    }
+                })
+                .then( (response) => {
+                    // en cas de réussite de la requête
+                    console.log(response);
+                    tmpWeekNb = tmpWeekNb + 1
+                    return response
+                })
+                .catch( (error) => {
+                    // en cas d’échec de la requête
+                    console.log(error);
+                },{
+                    headers: {
+                        'mode': "cors"
+                    }
+                })
+                tmpWeekNb = tmpWeekNb + 1
+            })
+            weeklyCarbonEmit.transport = weeklyCarbopnEmitValues[0]
+            weeklyCarbonEmit.logement = weeklyCarbopnEmitValues[1]
+            weeklyCarbonEmit.alimentation = weeklyCarbopnEmitValues[2]
+            weeklyCarbonEmit.divers = weeklyCarbopnEmitValues[3]
+        })
+
+        setCarboneEmit( monthlyCarboneEmit.reduce( (acc, currentValue) => {
+                Object.keys(currentValue).forEach ( (key,index) => {
+                    acc = acc + currentValue[key]
+
+                    if(index == 0){
+                        setTransportEmit( transportEmit + currentValue[key])
+                    } else if(index == 1) {
+                        setLogementEmit( logementEmit + currentValue[key])
+                    } else if(index == 2) {
+                        setAliementationEmit( aliementationEmit + currentValue[key])
+                    } else if(index == 3) {
+                        setDiversEmit( diversEmit + currentValue[key])
+                    }
+                })
+            },0)
+        )
+
+        setData_repartition([transportEmit/carboneEmit,
+                            logementEmit/carboneEmit,
+                            aliementationEmit/carboneEmit,
+                            diversEmit/carboneEmit])
+
+            
+    }, [])
 
     const doughnutColor_diff = diff >= 0 ? "#71DDB1" : "#DD7171";
 
