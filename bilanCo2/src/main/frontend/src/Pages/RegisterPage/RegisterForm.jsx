@@ -38,11 +38,19 @@ export default function RegisterForm() {
           .catch( (error) => {
             // en cas d’échec de la requête
             console.log(error);
-          })
+          },{
+            headers: {
+                'mode': "cors"
+            }
+        })
 
         axios.post('https://192.168.75.51/api/bilanco2/utilisateurs', registerData)
         .then((response) => {
             console.log(response);
+        },{
+            headers: {
+                'mode': "cors"
+            }
         })
         event.preventDefault();
         // Logique de validation du formulaire

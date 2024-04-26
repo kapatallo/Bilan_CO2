@@ -204,7 +204,7 @@ export default function WeeklyPopup({ show, onClose, onUpdateEmissionsMap }) {
         </div>
         </div>
       )}
-      <div className='next-step-button-container'>
+      <div className='wp-next-step-button-container'>
       <NextStepButton text={nextStepText} onClick={() => { /* Handle next step */ }}/>
       </div>
       </div>
