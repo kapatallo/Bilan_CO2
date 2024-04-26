@@ -15,13 +15,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.naming.AuthenticationException;
 
 import java.util.Optional;
-import java.util.logging.Logger;
 
 import static fr.univlyon1.m1if10.bilanCo2.utils.JwtHelper.verifyToken;
 import static fr.univlyon1.m1if10.bilanCo2.utils.JwtHelper.generateToken;
@@ -33,12 +31,11 @@ import static fr.univlyon1.m1if10.bilanCo2.utils.JwtHelper.noLifeTimeToken;
 @RestController
 public class OperationController {
 
-    /**
-     * The Logger.
-     */
-    private final Logger logger = Logger.getLogger(getClass().getName());
+    private final UtilisateurRepository utilisateurRepository;
 
-    private UtilisateurRepository utilisateurRepository;
+    private static final String BEARER = "Bearer ";
+
+    private static final String AUTHENTIFICATION = "Authentication";
 
     /**
      * Instantiates a new Utilisateur controller.
@@ -59,7 +56,6 @@ public class OperationController {
      * @throws AuthenticationException the authentication exception
      * @throws Exception               the exception
      */
-    @ResponseBody
     @PostMapping(value = "/login", consumes = {MediaType.APPLICATION_JSON_VALUE})
     @Operation(summary = "To let a user connect",
             tags = "Operation controller",
@@ -79,8 +75,8 @@ public class OperationController {
         if (user.isPresent()) {
                 String token = generateToken(user.get().getId(), origin);
                 HttpHeaders headers = new HttpHeaders();
-                headers.add("Authentication", "Bearer " + token);
-                headers.add("Access-Control-Expose-Headers", "Authentication");
+                headers.add(AUTHENTIFICATION, BEARER + token);
+                headers.add("Access-Control-Expose-Headers", AUTHENTIFICATION);
                 return new ResponseEntity<>(headers, HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -94,7 +90,7 @@ public class OperationController {
      * @param origin L'origine de la requête (pour la comparer avec celle du client,
      *               stockée dans le token JWT)
      * @return Une réponse vide avec un code de statut approprié (204, 400, 401).
-     * @throws AuthenticationException the authentication exception
+     * @throws AuthenticationException the AUTHENTIFICATION exception
      * @throws Exception               the exception
      */
     @GetMapping("/authenticate")
@@ -108,7 +104,7 @@ public class OperationController {
     public ResponseEntity<Long> authenticate(@RequestParam("jwt") final String jwt,
                                                @RequestParam("origin") final String origin)
             throws AuthenticationException, Exception {
-        String token = jwt.replace("Bearer ", "");
+        String token = jwt.replace(BEARER, "");
         Long id = verifyToken(token, origin);
         Optional<Utilisateur> user = utilisateurRepository.findById(id);
         if (user.isPresent()) {
@@ -135,16 +131,16 @@ public class OperationController {
                     @ApiResponse(responseCode = "400", description = "Bad request"),
                     @ApiResponse(responseCode = "401", description = "Unauthorized")
             })
-    public ResponseEntity<Void> logout(@RequestHeader("Authentication") final String jwt,
+    public ResponseEntity<Void> logout(@RequestHeader(AUTHENTIFICATION) final String jwt,
                                        @RequestHeader("origin") final String origin)
             throws AuthenticationException, Exception {
-        String token = jwt.replace("Bearer ", "");
+        String token = jwt.replace(BEARER, "");
         long id = verifyToken(token, origin);
         Optional<Utilisateur> user = utilisateurRepository.findById(id);
         if (user.isPresent()) {
             String newToken = noLifeTimeToken(id, origin);
             HttpHeaders headers = new HttpHeaders();
-            headers.add("Authentication", "Bearer " + newToken);
+            headers.add(AUTHENTIFICATION, BEARER + newToken);
             return new ResponseEntity<>(headers, HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
