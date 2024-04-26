@@ -19,23 +19,18 @@
 }
 
 .form-part {
+    margin-top: 18px;
     font-size: 20px;
     text-decoration: none;
     color: #59748A; 
     display: flex;
     align-items: center;
     padding:2%; 
-    border-radius: 6px;
-    cursor: default;
-
-}
-
-.form-part:hover {
-    background-color:#7b40f236 ;
 }
 
 .form-part.active {
     color: #5E17EB;
+    border-radius: 6px;
 }
 
 .icon-bar {
@@ -70,11 +65,6 @@
     padding-left: 10px;
     padding-right: 10px;
     border-radius: 10px;
-    cursor: default;
-}
-
-.next-step-button:hover{
-    background-color:#7b40f2b0 ;
 }
 
 .next-step-button-text {
