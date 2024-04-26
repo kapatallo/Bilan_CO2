@@ -18,7 +18,7 @@ export default function LineChartComponent({ dataChart }) {
     }, [dataChart]);
 
     const data = {
-        labels: ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan','Feb'],
+        labels: ['Sem -7', 'Sem -6', 'Sem -5', 'Sem -4', 'Sem -3', 'Sem -2', 'Sem -1','Sem 0'],
         datasets: [
             {
                 label: '',

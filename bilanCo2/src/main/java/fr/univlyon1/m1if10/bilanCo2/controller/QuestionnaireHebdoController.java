@@ -1,5 +1,6 @@
 package fr.univlyon1.m1if10.bilanCo2.controller;
 
+import fr.univlyon1.m1if10.bilanCo2.model.Ident;
 import fr.univlyon1.m1if10.bilanCo2.model.QuestionnaireHebdo;
 import fr.univlyon1.m1if10.bilanCo2.repository.QuestionnaireHebdoRepository;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -71,10 +72,10 @@ public class QuestionnaireHebdoController {
     /**
      * Gets user questionnaire hebdo by id.
      *
-     * @param id the id
+     * @param ident the ident
      * @return the user questionnaire hebdo by id
      */
-    @GetMapping(value = "/{id}", produces = {"application/json"})
+    @GetMapping(value = "/{ident}", produces = {"application/json"})
     @Operation(summary = "Get one userQuestionnaireHebdo in json format",
             tags = "Operation REST",
             responses = {
@@ -84,10 +85,12 @@ public class QuestionnaireHebdoController {
                     }),
                     @ApiResponse(responseCode = "500", description = "Bad request")
             })
-    public ResponseEntity<QuestionnaireHebdo> getUserQuestionnaireHebdoById(@PathVariable("id")
-                                                                                final long id) {
+    public ResponseEntity<QuestionnaireHebdo> getUserQuestionnaireHebdoById(@PathVariable("ident")
+                                                                                final Ident ident) {
+
         Optional<QuestionnaireHebdo> userQuestionnaireHebdoData =
-                questionnaireHebdoRepository.findById(id);
+                questionnaireHebdoRepository.findByIdent(ident.getAnnee(), ident.getSemaine(),
+                        ident.getId());
 
         if (userQuestionnaireHebdoData.isPresent()) {
             return new ResponseEntity<>(userQuestionnaireHebdoData.get(), HttpStatus.OK);

@@ -1,5 +1,6 @@
 package fr.univlyon1.m1if10.bilanCo2.controller;
 
+import fr.univlyon1.m1if10.bilanCo2.model.Ident;
 import fr.univlyon1.m1if10.bilanCo2.model.Transport;
 import fr.univlyon1.m1if10.bilanCo2.repository.TransportRepository;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -70,10 +71,10 @@ public class TransportController {
     /**
      * Gets user transport by id.
      *
-     * @param id the id
+     * @param ident the ident
      * @return the user transport by id
      */
-    @GetMapping(value = "/{id}", produces = {"application/json"})
+    @GetMapping(value = "/{ident}", produces = {"application/json"})
     @Operation(summary = "Get one userTransport in json format",
             tags = "Operation REST",
             responses = {
@@ -83,8 +84,10 @@ public class TransportController {
                     }),
                     @ApiResponse(responseCode = "500", description = "Bad request")
             })
-    public ResponseEntity<Transport> getUserTransportById(@PathVariable("id") final long id) {
-        Optional<Transport> userTransportData = transportRepository.findById(id);
+    public ResponseEntity<Transport> getUserTransportById(@PathVariable("ident")
+                                                              final Ident ident) {
+        Optional<Transport> userTransportData = transportRepository.findByIdent(
+                ident.getAnnee(), ident.getSemaine(), ident.getId());
 
         if (userTransportData.isPresent()) {
             return new ResponseEntity<>(userTransportData.get(), HttpStatus.OK);

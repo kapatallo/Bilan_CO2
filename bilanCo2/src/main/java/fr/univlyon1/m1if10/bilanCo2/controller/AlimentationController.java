@@ -1,6 +1,7 @@
 package fr.univlyon1.m1if10.bilanCo2.controller;
 
 import fr.univlyon1.m1if10.bilanCo2.model.Alimentation;
+import fr.univlyon1.m1if10.bilanCo2.model.Ident;
 import fr.univlyon1.m1if10.bilanCo2.repository.AlimentationRepository;
 import io.swagger.v3.oas.annotations.media.Content;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,10 +71,10 @@ public class AlimentationController {
     /**
      * Gets user alimentation by id.
      *
-     * @param id the id
+     * @param ident the ident
      * @return the user alimentation by id
      */
-    @GetMapping(value = "/{id}", produces = {"application/json"})
+    @GetMapping(value = "/{ident}", produces = {"application/json"})
     @Operation(summary = "Get one userAlimentation in json format",
             tags = "Operation REST",
             responses = {
@@ -83,8 +84,10 @@ public class AlimentationController {
                     }),
                     @ApiResponse(responseCode = "500", description = "Bad request")
             })
-    public ResponseEntity<Alimentation> getUserAlimentationById(@PathVariable("id") final long id) {
-        Optional<Alimentation> userAlimentationData = alimentationRepository.findById(id);
+    public ResponseEntity<Alimentation> getUserAlimentationById(@PathVariable("ident")
+                                                                    final Ident ident) {
+        Optional<Alimentation> userAlimentationData = alimentationRepository.findByIdent(
+                ident.getAnnee(), ident.getSemaine(), ident.getId());
 
         if (userAlimentationData.isPresent()) {
             return new ResponseEntity<>(userAlimentationData.get(), HttpStatus.OK);
