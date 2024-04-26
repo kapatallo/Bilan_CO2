@@ -1,106 +1,154 @@
 // ConnectionForm.js
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import FormQuestions from './FirstFormQuestions.jsx';
-import { ReactComponent as TransportIcon } from '../../resources/icons/transport.svg';
-import { ReactComponent as HouseIcon } from '../../resources/icons/house.svg';
-import { ReactComponent as FoodIcon } from '../../resources/icons/food.svg';
-import { ReactComponent as CubeIcon } from '../../resources/icons/cube.svg';
-import { ReactComponent as ArrowIcon } from '../../resources/icons/arrow.svg';
-import { ReactComponent as LeafLogo } from '../../resources/logo/Logo.svg';
-import { ReactComponent as CarbonPrintLogo } from '../../resources/logo/CarbonPrint.svg';
-import './FirstFormPage.css'; 
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import FormQuestions from "./FirstFormQuestions.jsx";
+import { UserResponsesContext } from "./UserResponsesContext.jsx";
+import { ReactComponent as TransportIcon } from "../../resources/icons/transport.svg";
+import { ReactComponent as HouseIcon } from "../../resources/icons/house.svg";
+import { ReactComponent as FoodIcon } from "../../resources/icons/food.svg";
+import { ReactComponent as CubeIcon } from "../../resources/icons/cube.svg";
+import { ReactComponent as ArrowIcon } from "../../resources/icons/arrow.svg";
+import { ReactComponent as LeafLogo } from "../../resources/logo/Logo.svg";
+import { ReactComponent as CarbonPrintLogo } from "../../resources/logo/CarbonPrint.svg";
+import "./FirstFormPage.css";
 
 export default function FirstFormPage() {
-    
-    const [formPart, setFormPart] = useState({
-        "partText":"transport",
-        "partId":0
-    });
-    const [nextStepText, setNextStepText] = useState("Logement");
+  const [userResponses, setUserResponses] = useState({});
 
-    const questions = require('./questions.json');
-    
-    let navigate = useNavigate();
-    useEffect( () => {
-        if(formPart.partText === "end") navigate('/Settings'); //quitter la page
-    }
-    ,[formPart])
+  const [formPart, setFormPart] = useState({
+    partText: "transport",
+    partId: 0,
+  });
+  const [nextStepText, setNextStepText] = useState("Logement");
 
-    const NextStepButton = (props) => {
-        return <div className="next-step-button"
-                onClick={ () => {
-                        if(formPart.partText === "transport") { 
-                            setNextStepText("Alimentation") 
-                            setFormPart({
-                                "partText":"logement",
-                                "partId":1
-                            })
-                            return
-                        } 
-                        else if(formPart.partText === "logement") { 
-                            setNextStepText("Divers") 
-                            setFormPart({
-                                "partText":"alimentation",
-                                "partId":2
-                            })
-                            return
-                        }
-                        else if(formPart.partText === "alimentation") { 
-                            setNextStepText("Terminer") 
-                            setFormPart({
-                                "partText":"divers",
-                                "partId":3
-                            })
-                            return
-                        }
-                        else if(formPart.partText === "divers") { 
-                            setFormPart({
-                                "partText":"end",
-                                "partId":null
-                            })
-                        }
-                    }
-                }> 
-                    <div className='next-step-button-text'> 
-                        {props.text} <ArrowIcon className="next-step-button-icon"/>  
-                    </div>
-                </div>
-    }
+  const questions = require("./questions.json");
 
+  let navigate = useNavigate();
+  useEffect(() => {
+    if (formPart.partText === "end") navigate("/Settings"); //quitter la page
+  }, [formPart]);
 
-
-
+  const NextStepButton = (props) => {
     return (
-        <>
-            <div className="logo">
-                <LeafLogo className="logo-element"/>
-                <CarbonPrintLogo className="logo-element" />
-            </div>
-            <h1> Un premier questionnaire pour évaluer vos émissions de carbone... </h1>
-            <div className='form'>
-                <div className='form-part-container'>
-                    <div className={formPart.partText === "transport" ? 'form-part active' : 'form-part'}>
-                        <TransportIcon className="icon-bar"/> Transport
-                    </div>
-                    <div className={formPart.partText === "logement" ? 'form-part active' : 'form-part'}>
-                        <HouseIcon className="icon-bar"/> Logement
-                    </div>
-                    <div className={formPart.partText === "alimentation" ? 'form-part active' : 'form-part'}>
-                        <FoodIcon className="icon-bar"/> Alimentation
-                    </div>
-                    <div className={formPart.partText === "divers" ? 'form-part active' : 'form-part'}>
-                        <CubeIcon className="icon-bar"/> Divers
-                    </div>
-                </div>
+      <div
+        className="next-step-button"
+        onClick={() => {
+          if (formPart.partText === "transport") {
+            setNextStepText("Terminer");
+            setFormPart({
+              partText: "logement",
+              partId: 1,
+            });
+            return;
+          } else if (formPart.partText === "logement") {
+            setFormPart({
+              partText: "end",
+              partId: null,
+            });
 
-                <FormQuestions data={questions} formId={formPart.partId} />
-                <div className='next-step-button-container'>
-                    <NextStepButton text={nextStepText}/>
-                </div>
-            </div>
-                    
-            
-        </>
+            let co2 = 0;
+            let co2_res = 0;
+            const marque = userResponses.marque;
+            const model = userResponses.model;
+            const carburant = userResponses.carburant;
+
+            const apiCo2Url =
+              "https://public.opendatasoft.com/api/explore/v2.1/catalog/datasets/vehicules-commercialises/records?select=AVG(co2_g_km)&where=marque%20%3D%20%27" +
+              marque +
+              "%27%20and%20modele_dossier%3D%27" +
+              model +
+              "%27%20and%20carburant%3D%27" +
+              carburant +
+              "%27&group_by=marque%2C%20modele_dossier%2C%20carburant&limit=1";
+
+            fetch(apiCo2Url)
+              .then((response) => response.json())
+              .then((data) => {
+                if (data.results && data.results.length > 0) {
+                  co2_res =
+                    Math.round(data.results[0]["AVG(co2_g_km)"] * 100) / 100; // pour arrondir à 2 chiffres après la virgule
+                }
+              })
+              .then(() => {
+                if (userResponses.haveCarResponse === "no") {
+                  co2 = null;
+                } else if (userResponses.haveCarResponse === "yes") {
+                  co2 = co2_res;
+                }
+              })
+              .then(() => {
+                let surface =
+                  userResponses["Quelle est la surface de votre logement ?"];
+                let nbPersonnesFoyer =
+                  userResponses["Combien de personnes vivent chez vous ?"];
+                let tailleAgglo =
+                  userResponses[
+                    "Taille de l'agglomération (nombre d'habitants) ?"
+                  ];
+                let appartement = userResponses.yesNoResponse;
+
+                console.log("co2: ", co2);
+                console.log("surface: ", surface);
+                console.log("nbPersonnesFoyer: ", nbPersonnesFoyer);
+                console.log("tailleAgglo: ", tailleAgglo);
+                console.log("Appartement: ", appartement);
+
+                // faire connexion à la base de données pour enregistrer les réponses
+              })
+              .then(() => {
+                alert("Vos réponses ont été enregistrées. Merci!");
+              });
+          }
+        }}
+      >
+        <div className="next-step-button-text">
+          {props.text} <ArrowIcon className="next-step-button-icon" />
+        </div>
+      </div>
     );
+  };
+
+  return (
+    <>
+      <UserResponsesContext.Provider
+        value={{ userResponses, setUserResponses }}
+      >
+        <div className="logo">
+          <LeafLogo className="logo-element" />
+          <CarbonPrintLogo className="logo-element" />
+        </div>
+        <h1>
+          {" "}
+          Un premier questionnaire pour évaluer vos émissions de carbone...{" "}
+        </h1>
+        <div className="form">
+          <div className="form-part-container">
+            <div
+              className={
+                formPart.partText === "transport"
+                  ? "form-part active"
+                  : "form-part"
+              }
+            >
+              <TransportIcon className="icon-bar" /> Transport
+            </div>
+            <div
+              className={
+                formPart.partText === "logement"
+                  ? "form-part active"
+                  : "form-part"
+              }
+            >
+              <HouseIcon className="icon-bar" /> Logement
+            </div>
+          </div>
+
+          <FormQuestions data={questions} formId={formPart.partId} />
+          <div className="next-step-button-container">
+            <NextStepButton text={nextStepText} />
+          </div>
+        </div>
+      </UserResponsesContext.Provider>
+    </>
+  );
 }
