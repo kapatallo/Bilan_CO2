@@ -252,81 +252,79 @@ export default function FirstFormQuestions(props) {
             </div>
           ))}
 
-      <div className="question-form">
-        {haveCar && props.formId === 0 ? (
-          <div>
-            <div className="question">
-              <div className="question-text-input-container">
-                <div>Quel est la marque de votre voiture ?</div>
+      {haveCar && props.formId === 0 ? (
+        <div>
+          <div className="question">
+            <div className="question-text-input-container">
+              <div>Quel est la marque de votre voiture ?</div>
 
-                <div>
-                  <select
-                    className="question-input"
-                    onChange={(e) => handleMarqueChange(e)}
-                  >
-                    {options.map((option, index) => (
-                      <option key={index} value={option}>
-                        {option}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+              <div>
+                <select
+                  className="question-input"
+                  onChange={(e) => handleMarqueChange(e)}
+                >
+                  {options.map((option, index) => (
+                    <option key={index} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
           </div>
-        ) : (
-          <div></div>
-        )}
+        </div>
+      ) : (
+        <div></div>
+      )}
 
-        {haveCar && props.formId === 0 ? (
-          <div>
-            <div className="question">
-              <div className="question-text-input-container">
-                <div>Quel est le modèle de votre voiture ?</div>
+      {haveCar && props.formId === 0 ? (
+        <div>
+          <div className="question">
+            <div className="question-text-input-container">
+              <div>Quel est le modèle de votre voiture ?</div>
 
-                <div>
-                  <select
-                    className="question-input"
-                    onChange={(e) => handleModelChange(e)}
-                  >
-                    {modelOptions.map((option, index) => (
-                      <option key={index} value={option}>
-                        {option}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+              <div>
+                <select
+                  className="question-input"
+                  onChange={(e) => handleModelChange(e)}
+                >
+                  {modelOptions.map((option, index) => (
+                    <option key={index} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
           </div>
-        ) : (
-          <div></div>
-        )}
-        {haveCar && props.formId === 0 ? (
-          <div>
-            <div className="question">
-              <div className="question-text-input-container">
-                <div>Carburant : </div>
+        </div>
+      ) : (
+        <div></div>
+      )}
+      {haveCar && props.formId === 0 ? (
+        <div>
+          <div className="question">
+            <div className="question-text-input-container">
+              <div>Carburant : </div>
 
-                <div>
-                  <select
-                    className="question-input"
-                    onChange={(e) => handleCarburantChange(e)}
-                  >
-                    {carburantOptions.map((option, index) => (
-                      <option key={index} value={option}>
-                        {option}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+              <div>
+                <select
+                  className="question-input"
+                  onChange={(e) => handleCarburantChange(e)}
+                >
+                  {carburantOptions.map((option, index) => (
+                    <option key={index} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
           </div>
-        ) : (
-          <div></div>
-        )}
-      </div>
+        </div>
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 }
