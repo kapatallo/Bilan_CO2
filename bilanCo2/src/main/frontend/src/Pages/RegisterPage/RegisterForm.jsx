@@ -70,13 +70,13 @@ export default function RegisterForm() {
                 <div className="input-container">
                     <label htmlFor="email">Email:</label>
                     <input onChange={handleChange}
-                    type="text" id="email" name="email" required/>
+                    type="email" id="email" name="email" required/>
                 </div>
 
                 <div className="input-container">
                     <label htmlFor="pwd">Mot de passe:</label>
                     <input onChange={handleChange}
-                    type="text" id="mdp" name="motDePasse" required/>
+                    type="password" id="mdp" name="motDePasse" required/>
                 </div>
 
                 <div className="input-container">
