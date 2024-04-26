@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * The type UtilisateurInfos controller.
  */
-//@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = {"http://localhost:8080", "http://localhost:3000","http://localhost",
+                        "https://192.168.75.51/api", "http://192.168.75.51",
+                        "https://192.168.75.51"})
 @RestController
 @RequestMapping("/utilisateur/infos")
 public class UtilisateurInfosController {

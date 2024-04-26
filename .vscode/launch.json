@@ -1,0 +1,14 @@
+{
+	"configurations": [
+		{
+			"type": "java",
+			"name": "Spring Boot-BilanCo2Application<bilanCo2>",
+			"request": "launch",
+			"cwd": "${workspaceFolder}",
+			"mainClass": "fr.univlyon1.m1if10.bilanCo2.BilanCo2Application",
+			"projectName": "bilanCo2",
+			"args": "",
+			"envFile": "${workspaceFolder}/.env"
+		}
+	]
+}

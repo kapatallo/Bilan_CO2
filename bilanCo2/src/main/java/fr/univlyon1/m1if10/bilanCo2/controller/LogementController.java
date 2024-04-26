@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +23,9 @@ import java.util.logging.Logger;
 /**
  * The type Logement controller.
  */
-//@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = {"http://localhost:8080", "http://localhost:3000","http://localhost",
+                        "https://192.168.75.51/api", "http://192.168.75.51",
+                        "https://192.168.75.51"})
 @RestController
 @RequestMapping("/utilisateur/questionnaireHebdo/logement")
 public class LogementController {
