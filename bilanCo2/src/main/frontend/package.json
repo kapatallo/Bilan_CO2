@@ -23,7 +23,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "serve": "serve -s build",
+    "serve": "kill $(ps -e | grep 'npm run serve' | awk '{print $1}') && serve -s build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
