@@ -25,8 +25,8 @@ public class UtilisateurInfos {
             foreignKey = @ForeignKey(name = "id"))
     private long id;
 
-    @Column(name = "cnit")
-    private String cnit;
+    @Column(name = "co2_g_km")
+    private float cnit;
 
     @Column(name = "nb_pers_foyer")
     private int nbPersFoyer;
@@ -36,6 +36,9 @@ public class UtilisateurInfos {
 
     @Column(name = "hab_agglo")
     private int habAgglo;
+
+    @Column(name = "possede_appartement")
+    private String possedeAppartement;
 
     /**
      * Instantiates a new Utilisateur infos.
@@ -54,15 +57,16 @@ public class UtilisateurInfos {
      * @param surfaceLogement the surface logement
      * @param habAgglo        the hab agglo
      */
-    public UtilisateurInfos(final long idui, final long id, final String cnit,
+    public UtilisateurInfos(final long idui, final long id, final float cnit,
                             final int nbPersFoyer, final int surfaceLogement,
-                            final int habAgglo) {
+                            final int habAgglo, final String possedeA) {
         this.idui = idui;
         this.id = id;
         this.cnit = cnit;
         this.nbPersFoyer = nbPersFoyer;
         this.surfaceLogement = surfaceLogement;
         this.habAgglo = habAgglo;
+        this.possedeAppartement = possedeA;
     }
 
     /**
@@ -111,7 +115,7 @@ public class UtilisateurInfos {
      *
      * @return the cnit
      */
-    public String getCnit() {
+    public float getCnit() {
         return cnit;
     }
 
@@ -120,7 +124,7 @@ public class UtilisateurInfos {
      *
      * @param cnit the cnit
      */
-    public void setCnit(final String cnit) {
+    public void setCnit(final float cnit) {
         this.cnit = cnit;
     }
 
@@ -176,5 +180,13 @@ public class UtilisateurInfos {
      */
     public void setHabAgglo(final int habAgglo) {
         this.habAgglo = habAgglo;
+    }
+
+    public String getPossedeAppartement() {
+        return possedeAppartement;
+    }
+
+    public void setPossedeAppartement(String possedeAppartement) {
+        this.possedeAppartement = possedeAppartement;
     }
 }

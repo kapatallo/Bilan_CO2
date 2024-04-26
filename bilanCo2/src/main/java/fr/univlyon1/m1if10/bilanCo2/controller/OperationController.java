@@ -5,6 +5,7 @@ import fr.univlyon1.m1if10.bilanCo2.model.Utilisateur;
 import fr.univlyon1.m1if10.bilanCo2.repository.UtilisateurRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -66,9 +67,9 @@ public class OperationController {
             })
     public ResponseEntity<Void> loginJson(@RequestBody final UserDto userDto,
                                           @RequestHeader("Origin") final String origin)
-            throws AuthenticationException, Exception {
+            throws AuthenticationException, IllegalArgumentException {
         if (userDto.getemail() == null || userDto.getmdp() == null) {
-            throw new Exception("Il manque un paramètre");
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         Optional<Utilisateur> user = utilisateurRepository.findByMailMdp(userDto.getemail(),
                 userDto.getmdp());
@@ -103,7 +104,7 @@ public class OperationController {
             })
     public ResponseEntity<Long> authenticate(@RequestParam("jwt") final String jwt,
                                                @RequestParam("origin") final String origin)
-            throws AuthenticationException, Exception {
+            throws AuthenticationException, IllegalArgumentException, BadRequestException {
         String token = jwt.replace(BEARER, "");
         Long id = verifyToken(token, origin);
         Optional<Utilisateur> user = utilisateurRepository.findById(id);
@@ -133,7 +134,7 @@ public class OperationController {
             })
     public ResponseEntity<Void> logout(@RequestHeader(AUTHENTIFICATION) final String jwt,
                                        @RequestHeader("origin") final String origin)
-            throws AuthenticationException, Exception {
+            throws AuthenticationException, IllegalArgumentException, BadRequestException {
         String token = jwt.replace(BEARER, "");
         long id = verifyToken(token, origin);
         Optional<Utilisateur> user = utilisateurRepository.findById(id);
