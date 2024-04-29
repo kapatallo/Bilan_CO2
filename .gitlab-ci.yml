@@ -71,5 +71,5 @@ deploy:
     - which scp
     - scp -o StrictHostKeyChecking=no -i $CI_SSH_KEY target/bilanCo2.war gitlabci@192.168.75.51:/opt/tomcat/webapps/bilanco2.war
     - scp -o StrictHostKeyChecking=no -i $CI_SSH_KEY -r src/main/frontend gitlabci@192.168.75.51:~/
-    - ssh -o StrictHostKeyChecking=no -i $CI_SSH_KEY gitlabci@192.168.75.51 'cd frontend && npm i && npm run build && npm run serve'
+    - ssh -o StrictHostKeyChecking=no -i $CI_SSH_KEY gitlabci@192.168.75.51 'cd frontend && rm -r node_modules && npm i && npm run build && npm run serve'
 
