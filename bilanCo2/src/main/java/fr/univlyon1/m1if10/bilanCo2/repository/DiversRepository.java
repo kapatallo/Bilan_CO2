@@ -10,8 +10,7 @@ import java.util.Optional;
 
 /**
  * The interface Divers repository.
- */
-/*@CrossOrigin(origins = {"http://localhost:8080", "http://localhost:3000", "http://localhost",
+@CrossOrigin(origins = {"http://localhost:8080", "http://localhost:3000", "http://localhost",
                         "https://192.168.75.51/api", "http://192.168.75.51",
                         "https://192.168.75.51"})*/
 @Component
