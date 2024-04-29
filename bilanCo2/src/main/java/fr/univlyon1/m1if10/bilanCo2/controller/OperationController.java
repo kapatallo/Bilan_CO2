@@ -10,7 +10,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,9 +31,9 @@ import static fr.univlyon1.m1if10.bilanCo2.utils.JwtHelper.noLifeTimeToken;
  * The type Operation controller.
  */
 @RestController
-@CrossOrigin(origins = {"http://localhost:8080", "http://localhost:3000", "http://localhost",
+/*@CrossOrigin(origins = {"http://localhost:8080", "http://localhost:3000", "http://localhost",
                         "https://192.168.75.51/api", "http://192.168.75.51",
-                        "https://192.168.75.51"})
+                        "https://192.168.75.51"})*/
 public class OperationController {
 
     /**
