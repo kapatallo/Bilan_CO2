@@ -1,9 +1,9 @@
 stages:
+    - deploy-back
     - deploy-front
     - sonarqube-check
     - sonarqube-check-java
     - sonarqube-vulnerability-report
-    - deploy-back
 
 sonarqube-check:
   stage: sonarqube-check
