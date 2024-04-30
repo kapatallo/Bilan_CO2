@@ -82,7 +82,7 @@ deploy-front:
   before_script:
     - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
     - chmod 400 $CI_SSH_KEY
-    - export CI = false
+    - export CI=false
     - cd bilanCo2/src/main/frontend
     - npm install
     - npm run build
