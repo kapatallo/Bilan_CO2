@@ -1,5 +1,5 @@
 // ConnectionForm.js
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './RegisterForm.css'; 
 import LogoName from '../../resources/logo/CarbonPrint.svg';
@@ -28,22 +28,6 @@ export default function RegisterForm() {
 
     const handleSubmit = (event) => {
         console.log(registerData);
-
-        var newUserId;
-
-        axios.get('https://192.168.75.51/api/bilanco2/utilisateurs')
-        .then( (response) => {
-            // en cas de réussite de la requête
-            console.log(response);
-          })
-          .catch( (error) => {
-            // en cas d’échec de la requête
-            console.log(error);
-          },{
-            headers: {
-                'mode': "cors"
-            }
-        })
 
         axios.post('https://192.168.75.51/api/bilanco2/utilisateurs', registerData)
         .then((response) => {

@@ -1,7 +1,6 @@
 import React from 'react';
 import NavBar from '../../NavBar/NavBar';
 import { useState } from 'react';
-import { Form } from 'react-router-dom';
 import './SettingPage.css'
 import axios from 'axios';
 
