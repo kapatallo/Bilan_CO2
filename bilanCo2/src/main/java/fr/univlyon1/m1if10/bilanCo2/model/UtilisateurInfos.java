@@ -81,6 +81,7 @@ public class UtilisateurInfos {
         this.nbPersFoyer = newUtilisateurInfos.getNbPersFoyer();
         this.surfaceLogement = newUtilisateurInfos.getSurfaceLogement();
         this.habAgglo = newUtilisateurInfos.getHabAgglo();
+        this.possedeAppartement = newUtilisateurInfos.getPossedeAppartement();
     }
 
     /**
