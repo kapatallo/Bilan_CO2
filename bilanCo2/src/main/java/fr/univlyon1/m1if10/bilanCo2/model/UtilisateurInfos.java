@@ -81,6 +81,7 @@ public class UtilisateurInfos {
         this.nbPersFoyer = newUtilisateurInfos.getNbPersFoyer();
         this.surfaceLogement = newUtilisateurInfos.getSurfaceLogement();
         this.habAgglo = newUtilisateurInfos.getHabAgglo();
+        this.possedeAppartement = newUtilisateurInfos.getPossedeAppartement();
     }
 
     /**
@@ -186,7 +187,7 @@ public class UtilisateurInfos {
         return possedeAppartement;
     }
 
-    public void setPossedeAppartement(String possedeAppartement) {
+    public void setPossedeAppartement(final String possedeAppartement) {
         this.possedeAppartement = possedeAppartement;
     }
 }

@@ -152,10 +152,6 @@ export default function DashboardPage() {
                 .catch( (error) => {
                     // en cas d’échec de la requête
                     console.log(error);
-                },{
-                    headers: {
-                        'mode': "cors"
-                    }
                 })
                 tmpWeekNb = tmpWeekNb + 1
             })
