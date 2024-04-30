@@ -69,7 +69,6 @@ deploy-back:
   script:
     - cd bilanCo2
     - mvn clean package
-    - which scp
     - scp -o StrictHostKeyChecking=no -i $CI_SSH_KEY target/bilanCo2.war gitlabci@192.168.75.51:/opt/tomcat/webapps/bilanco2.war
 
 deploy-front:
@@ -87,4 +86,4 @@ deploy-front:
     - npm install
     - npm run build
   script:
-    - scp -o StrictHostKeyChecking=no -i $CI_SSH_KEY -r build/ gitlabci@192.168.75.51:/usr/share/nginx/html/carbonprint/
+    - scp -o StrictHostKeyChecking=no -i $CI_SSH_KEY -r build/ gitlabci@192.168.75.51:/usr/share/nginx/html/carbonprint
