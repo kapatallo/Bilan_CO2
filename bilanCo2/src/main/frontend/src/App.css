@@ -3,6 +3,7 @@
   background-color: #F2F8FD;
   font-family: 'Poppins', sans-serif;
   min-height: 100vh;
+  min-width: 200vh;
 }
 
 .App-logo {

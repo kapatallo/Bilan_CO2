@@ -12,6 +12,17 @@ export default function SettingPage() {
         newPassword: ''
     });
 
+const resetForm = () => {
+    console.log("hey")
+        setValue({
+            nom: '',
+            prenom: '',
+            email: '',
+            mdp: '',
+            confmdp: ''
+        })
+    }
+
     const handleChange = (e) => {
         const name = e.target.name;
         const value = e.target.value;
@@ -33,26 +44,24 @@ export default function SettingPage() {
     }
 
     return (
-        <div>
+        <div className='setting-page'>
             <NavBar />
             <div className='settings-container'>
-                <p className='header-page-settings'>Pages/
-                    <span className='header-page-name-settings'>Paramètres</span>
-                </p>
+                <p className="header-page">Pages / <span className="header-page-name">Paramètres</span></p>
                 <div className='h-settings'>Vos informations</div>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className='settings-form'>
                     <ul className='settings-container'>
                         <li>
                             <label>
                                 <span>Nom :</span>
                             </label>
-                            <input className='input-settings' type="text" id="nom" name="name" value={inputValue.name} onChange={handleChange} />
+                            <input className='input-settings' type="text" id="nom" name="nom" value={inputValue.nom} onChange={handleChange} />
                         </li>
                         <li>
                             <label>
                                 <span>Prénom :</span>
                             </label>
-                            <input className='input-settings' type="text" id='prenom' name="firstnmame" value={inputValue.firstnmame} onChange={handleChange} />
+                            <input className='input-settings' type="text" id='prenom' name="prenom" value={inputValue.prenom} onChange={handleChange} />
                         </li>
                         <li>
                             <label>
@@ -75,7 +84,7 @@ export default function SettingPage() {
                     </ul>
                     <div className="input-container-button">
                         <input type="submit" value="Modifier" />
-                        <input type="submit" value="Annuler" />
+                        <button type="button" className='annuler-button' onClick={resetForm}>Annuler</button>
                     </div>
 
                 </form>
