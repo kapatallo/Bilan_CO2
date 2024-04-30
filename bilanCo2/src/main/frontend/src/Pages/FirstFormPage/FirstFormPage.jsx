@@ -111,16 +111,9 @@ export default function FirstFormPage() {
                     "https://192.168.75.51/api/bilanco2/utilisateur/infos",
                     data
                   )
-                  .then(
-                    (response) => {
-                      console.log(response);
-                    },
-                    {
-                      headers: {
-                        mode: "cors",
-                      },
-                    }
-                  );
+                  .then((response) => {
+                    console.log(response);
+                  });
               })
               .then(() => {
                 alert("Vos réponses ont été enregistrées. Merci!");
