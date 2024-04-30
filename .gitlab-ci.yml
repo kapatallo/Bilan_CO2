@@ -1,6 +1,6 @@
 stages:
-    - deploy-back
     - deploy-front
+    - deploy-back
     - sonarqube-check
     - sonarqube-check-java
     - sonarqube-vulnerability-report
@@ -82,13 +82,9 @@ deploy-front:
   before_script:
     - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
     - chmod 400 $CI_SSH_KEY
-    - export CI=false
+    - export CI = false
     - cd bilanCo2/src/main/frontend
     - npm install
     - npm run build
   script:
-    - scp -o StrictHostKeyChecking=no -i $CI_SSH_KEY -r build/ gitlabci@192.168.75.51:~/
-    - scp -o StrictHostKeyChecking=no -i $CI_SSH_KEY -r package.json gitlabci@192.168.75.51:~/
-    - ssh -o StrictHostKeyChecking=no -i $CI_SSH_KEY gitlabci@192.168.75.51 'npm run serve'
-    
-
+    - scp -o StrictHostKeyChecking=no -i $CI_SSH_KEY -r build/ gitlabci@192.168.75.51:/usr/share/nginx/html/carbonprint/
