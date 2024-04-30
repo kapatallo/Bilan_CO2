@@ -105,8 +105,7 @@ public class OperationController {
                     @ApiResponse(responseCode = "401", description = "Unauthorized")
             })
     public ResponseEntity<Long> authenticate(@RequestParam("jwt") final String jwt,
-                                               @RequestParam("origin") final String origin)
-        {
+                                               @RequestParam("origin") final String origin) {
         String token = jwt.replace(BEARER, "");
         Long id = verifyToken(token, origin);
         Optional<Utilisateur> user = utilisateurRepository.findById(id);

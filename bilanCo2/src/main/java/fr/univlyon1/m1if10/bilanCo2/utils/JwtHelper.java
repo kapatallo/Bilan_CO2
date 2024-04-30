@@ -45,8 +45,7 @@ public final class JwtHelper {
      * si l'utilisateur est authentifié
      */
     public static Long verifyToken(final String token, @NotNull final String req)
-            throws NullPointerException, JWTVerificationException
-        {
+            throws NullPointerException, JWTVerificationException {
         try {
             JWTVerifier authenticationVerifier = JWT.require(ALGORITHM)
                     .withIssuer(ISSUER)
