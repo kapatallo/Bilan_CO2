@@ -2,6 +2,7 @@
   text-align: center;
   background-color: #F2F8FD;
   font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
 }
 
 .App-logo {
