@@ -24,8 +24,7 @@ const FoodSearchComponent = ({ onItemSelected }) => {
     const searchCapitalized = search.charAt(0).toUpperCase() + search.slice(1);
     
     const encodedSearchTerm = encodeURIComponent(`(*${searchLower}* OR *${searchCapitalized}*)`);
-    
-    const url = `https://data.ademe.fr/data-fair/api/v1/datasets/base-carboner/lines?page=1&after=1&size=50&sort=&select=Identifiant_de_l'%C3%A9l%C3%A9ment,Nom_base_fran%C3%A7ais,Nom_attribut_fran%C3%A7ais,Unit%C3%A9_fran%C3%A7ais,Total_poste_non_d%C3%A9compos%C3%A9&q_fields=Nom_base_fran%C3%A7ais&qs=Nom_base_fran%C3%A7ais:${encodedSearchTerm}`;
+    const url = `https://data.ademe.fr/data-fair/api/v1/datasets/base-carboner/lines?page=1&after=1&size=12&sort=&select=Identifiant_de_l'%C3%A9l%C3%A9ment,Nom_base_fran%C3%A7ais,Nom_attribut_fran%C3%A7ais,Code_de_la_cat%C3%A9gorie,Unit%C3%A9_fran%C3%A7ais,Total_poste_non_d%C3%A9compos%C3%A9&q_fields=Nom_base_fran%C3%A7ais,Nom_base_anglais&qs=Code_de_la_cat%C3%A9gorie:Achats de biens > Produits agro-alimentaires AND Nom_base_fran%C3%A7ais:${encodedSearchTerm}`
     try {
       const response = await fetch(url);
       if (response.ok) {
@@ -77,7 +76,7 @@ const FoodSearchComponent = ({ onItemSelected }) => {
     id="food-search"
     options={filterOptions(suggestions)}
     getOptionLabel={(option) => option.label || ""}
-    renderInput={(params) => <TextField {...params} label="Ajouter un aliment" />}
+    renderInput={(params) => <TextField {...params} label="Ajouter un aliment" id="textflield"/>}
     onInputChange={(event, newInputValue) => {
       setSearchTerm(newInputValue);
     }}

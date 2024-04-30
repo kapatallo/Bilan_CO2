@@ -20,14 +20,16 @@ background-color: white;
     width: 60%;
 }
 
+#textflield{
+color: red;}
+
 .css-clttge-MuiAutocomplete-root ~ div{
 position: relative;
 bottom: 7px;
 display: flex;
 align-items: center;
 }
-.css-clttge-MuiAutocomplete-root  *{
-border: 0px;
+.css-clttge-MuiAutocomplete-root  input{
 background-color: white;
 }
 #quantity {

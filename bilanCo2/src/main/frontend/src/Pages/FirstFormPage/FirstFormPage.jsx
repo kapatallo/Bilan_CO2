@@ -9,6 +9,7 @@ import { ReactComponent as ArrowIcon } from "../../resources/icons/arrow.svg";
 import { ReactComponent as LeafLogo } from "../../resources/logo/Logo.svg";
 import { ReactComponent as CarbonPrintLogo } from "../../resources/logo/CarbonPrint.svg";
 import "./FirstFormPage.css";
+import axios from "axios";
 
 export default function FirstFormPage() {
   const [userResponses, setUserResponses] = useState({});
@@ -88,10 +89,29 @@ export default function FirstFormPage() {
                 console.log("co2: ", co2);
                 console.log("surface: ", surface);
                 console.log("nbPersonnesFoyer: ", nbPersonnesFoyer);
-                console.log("tailleAgglo: ", tailleAgglo);
+                console.log("tailleAgglomeration: ", tailleAgglo);
                 console.log("Appartement: ", appartement);
 
-                // faire connexion à la base de données pour enregistrer les réponses
+                const data = {
+                  idui: 0,
+                  id: 1, // a recup de la base de données
+                  co2_g_km: co2,
+                  nbPersFoyer: nbPersonnesFoyer,
+                  surfaceLogement: surface,
+                  habAgglo: tailleAgglo,
+                  possedeAppartement: appartement,
+                };
+
+                // verfier d'abord si l'utilisateur est connecté et récupérer son id
+
+                axios
+                  .post(
+                    "https://192.168.75.51/api/bilanco2/utilisateur/infos",
+                    data
+                  )
+                  .then((response) => {
+                    console.log(response);
+                  });
               })
               .then(() => {
                 alert("Vos réponses ont été enregistrées. Merci!");

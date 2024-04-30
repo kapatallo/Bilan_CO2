@@ -6,8 +6,8 @@ import axios from 'axios';
 
 export default function SettingPage() {
     const [inputValue, setValue] = useState({
-        name: '',
-        firstnmame: '',
+        nom: '',
+        prenom: '',
         email: '',
         newPassword: ''
     });
@@ -21,12 +21,12 @@ export default function SettingPage() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.put('https://192.168.75.51/api/bilanco2/utilisateurs', inputValue,{
+            const response = await axios.put('https://192.168.75.51/api/bilanco2/utilisateurs', inputValue, {
                 headers: {
                     'mode': 'cors'
                 }
             })
-            console.log('User updated : ', response.data);
+            console.log('User updated : ', response.setValue);
         } catch (error) {
             console.log(error);
         }
@@ -36,7 +36,7 @@ export default function SettingPage() {
         <div>
             <NavBar />
             <div className='settings-container'>
-                <p className='header-page-settings'>Pages/ 
+                <p className='header-page-settings'>Pages/
                     <span className='header-page-name-settings'>Paramètres</span>
                 </p>
                 <div className='h-settings'>Vos informations</div>
@@ -46,31 +46,31 @@ export default function SettingPage() {
                             <label>
                                 <span>Nom :</span>
                             </label>
-                            <input className='input-settings' type="text" name="name" value={inputValue.name} onChange={handleChange} />
+                            <input className='input-settings' type="text" id="nom" name="name" value={inputValue.name} onChange={handleChange} />
                         </li>
                         <li>
                             <label>
                                 <span>Prénom :</span>
                             </label>
-                            <input className='input-settings' type="text" name="firstnmame" value={inputValue.firstnmame} onChange={handleChange} />
+                            <input className='input-settings' type="text" id='prenom' name="firstnmame" value={inputValue.firstnmame} onChange={handleChange} />
                         </li>
                         <li>
                             <label>
                                 <span>E-mail :</span>
                             </label>
-                            <input className='input-settings' type="email" name="email" value={inputValue.email} onChange={handleChange} />
+                            <input className='input-settings' type="email" id='email' name="email" value={inputValue.email} onChange={handleChange} />
                         </li>
                         <li>
                             <label>
                                 <span>Mot de passe :</span>
                             </label>
-                            <input className='input-settings' type="password" name="mdp" value={inputValue.mdp} onChange={handleChange} />
+                            <input className='input-settings' type="password" id='mdp' name="mdp" value={inputValue.mdp} onChange={handleChange} />
                         </li>
                         <li>
                             <label>
                                 <span>Confirmer le mot de passe :</span>
                             </label>
-                            <input className='input-settings' type="password" name="confmdp" value={inputValue.confmdp} onChange={handleChange} />
+                            <input className='input-settings' type="password" id='confmdp' name="confmdp" value={inputValue.confmdp} onChange={handleChange} />
                         </li>
                     </ul>
                     <div className="input-container-button">
