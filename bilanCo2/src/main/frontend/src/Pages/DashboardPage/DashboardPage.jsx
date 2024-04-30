@@ -90,7 +90,7 @@ export default function DashboardPage() {
     };
 
     const [username, setUsername] = useState("Jawad Mecheri");
-    const [carboneEmit, setCarboneEmit] = useState(34);
+    const [carboneEmit, setCarboneEmit] = useState([0,0,0,0,0]);
     const [top, setTop] = useState(calculateTopPercentile(carboneEmit));
     const [co2Km, setCo2Km] = useState(2);
     const [choix, setChoix] = useState(80);
@@ -161,10 +161,11 @@ export default function DashboardPage() {
                 transport: 0,
                 logement: 0,
                 alimentation: 0,
-                diverse: 0
+                divers: 0
             }
               
         ]
+        var tmpCarboneEmit = [0,0,0,0,0]
         
         eightWeeksCarboneEmit.map( (weeklyCarbonEmit,i) => {
             const weeklyCarbonEmitValues = Object.keys(weeklyCarbonEmit).map ( (key) => {
@@ -186,16 +187,24 @@ export default function DashboardPage() {
                     return 0
                 })
             })
-            weeklyCarbonEmit.transport = weeklyCarbonEmitValues[0]
-            weeklyCarbonEmit.logement = weeklyCarbonEmitValues[1]
-            weeklyCarbonEmit.alimentation = weeklyCarbonEmitValues[2]
-            weeklyCarbonEmit.divers = weeklyCarbonEmitValues[3]
-            weekNb--;
+            weeklyCarbonEmit.transport = Math.floor(Math.random() * 10);
+            weeklyCarbonEmit.logement = Math.floor(Math.random() * 10);
+            weeklyCarbonEmit.alimentation = Math.floor(Math.random() * 10);
+            weeklyCarbonEmit.divers = Math.floor(Math.random() * 10);
             eightWeeksCarboneEmitSums[i] = weeklyCarbonEmit.transport + weeklyCarbonEmit.logement
                                         + weeklyCarbonEmit.alimentation + weeklyCarbonEmit.divers;
-        })
-        setData_chart(eightWeeksCarboneEmitSums)
 
+            tmpCarboneEmit = [tmpCarboneEmit[0]+eightWeeksCarboneEmitSums[i], 
+                            tmpCarboneEmit[1]+weeklyCarbonEmit.transport,
+                            tmpCarboneEmit[2]+weeklyCarbonEmit.logement,
+                            tmpCarboneEmit[3]+weeklyCarbonEmit.alimentation,
+                            tmpCarboneEmit[4]+weeklyCarbonEmit.divers] 
+            weekNb--;
+        })
+        setCarboneEmit(tmpCarboneEmit)
+        
+        setData_chart(eightWeeksCarboneEmitSums)
+  
         //Si tous les champs de la dernière case du tableau (la semaine actuelle) sont à 0n
         //On considère que le questionnaire n'a pas été fait 
         if( eightWeeksCarboneEmit[7].transport === 0 &&
@@ -204,28 +213,8 @@ export default function DashboardPage() {
             eightWeeksCarboneEmit[7].divers === 0) {
             setWeeklyQuestionsDone(false)
         }
-
-        setCarboneEmit( eightWeeksCarboneEmit.reduce( (acc, currentValue) => {
-                Object.keys(currentValue).forEach ( (key,index) => {
-                    acc = acc + currentValue[key]
-
-                    if(index == 0){
-                        setTransportEmit( transportEmit + currentValue[key])
-                    } else if(index == 1) {
-                        setLogementEmit( logementEmit + currentValue[key])
-                    } else if(index == 2) {
-                        setAliementationEmit( aliementationEmit + currentValue[key])
-                    } else if(index == 3) {
-                        setDiversEmit( diversEmit + currentValue[key])
-                    }
-                })
-            },0)
-        )
-
-        setData_repartition([transportEmit/carboneEmit,
-                            logementEmit/carboneEmit,
-                            aliementationEmit/carboneEmit,
-                            diversEmit/carboneEmit])
+        
+        
 
             
     }, [])
@@ -236,11 +225,16 @@ export default function DashboardPage() {
     // If 'carboneEmit' changes, update 'top'
     useEffect(() => {
         setTop(calculateTopPercentile(carboneEmit));
+        setData_repartition([(carboneEmit[1]/carboneEmit[0]).toPrecision(3),
+                            (carboneEmit[2]/carboneEmit[0]).toPrecision(3),
+                            (carboneEmit[3]/carboneEmit[0]).toPrecision(3),
+                            (carboneEmit[4]/carboneEmit[0]).toPrecision(3)])
+        console.log(data_repartition);
     }, [carboneEmit]);
 
     // Recalculate quota when carboneEmit or data_chart changes
     useEffect(() => {
-        setQuota(calculateQuota(carboneEmit, data_chart));
+        setQuota(calculateQuota(carboneEmit[0], data_chart));
     }, [carboneEmit, data_chart]);
     
         useEffect(() => {
@@ -259,7 +253,7 @@ export default function DashboardPage() {
                 <div className="dashboard-stats">
                         <InfoCard
                             icon={CarbonIcon}
-                            value= {carboneEmit}
+                            value= {carboneEmit[0]}
                             unit="kgs"
                             label="De carbone émit ce mois-ci"
                         />
