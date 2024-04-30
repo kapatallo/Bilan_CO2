@@ -1,5 +1,4 @@
 stages:
-    - deploy-front
     - deploy-back
     - sonarqube-check
     - sonarqube-check-java
