@@ -5,8 +5,6 @@ import FormQuestions from "./FirstFormQuestions.jsx";
 import { UserResponsesContext } from "./UserResponsesContext.jsx";
 import { ReactComponent as TransportIcon } from "../../resources/icons/transport.svg";
 import { ReactComponent as HouseIcon } from "../../resources/icons/house.svg";
-import { ReactComponent as FoodIcon } from "../../resources/icons/food.svg";
-import { ReactComponent as CubeIcon } from "../../resources/icons/cube.svg";
 import { ReactComponent as ArrowIcon } from "../../resources/icons/arrow.svg";
 import { ReactComponent as LeafLogo } from "../../resources/logo/Logo.svg";
 import { ReactComponent as CarbonPrintLogo } from "../../resources/logo/CarbonPrint.svg";
