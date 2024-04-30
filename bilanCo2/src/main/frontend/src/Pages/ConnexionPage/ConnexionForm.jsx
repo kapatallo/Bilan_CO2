@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import "./ConnexionForm.css";
 import LogoName from "../../resources/logo/CarbonPrint.svg";
 import Logo from "../../resources/logo/Logo.svg";
-import bcrypt from "bcryptjs";
+import bcrypt, { hash } from "bcryptjs";
+import axios from "axios";
 
 export default function ConnexionForm() {
   let navigate = useNavigate();
@@ -24,26 +25,24 @@ export default function ConnexionForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // Normalement on doit récupérer mdp de l'utilisateur grace son email
-    // hash pour test avec mdp = 12345
-    const testmdp =
-      "$2a$10$bS9JCm/UT5T5aLiLAWcmNerZF7LjVfpjhBReDsZWzbQcl5J6nUpOK";
+    axios
+      .post(`https://192.168.75.51/api/bilanco2/login`, {
+        email: connexionData.email,
+        mdp: connexionData.pwd,
+      })
+      .then((response) => {
+        const userFromDb = response.data;
 
-    bcrypt.compare(connexionData.pwd, testmdp, function (err, result) {
-      if (err) {
-        console.error(err);
-        return;
-      }
+        console.log(userFromDb);
 
-      if (result) {
-        // Passwords match
-        navigate("/dashboard");
-      } else {
-        // Passwords don't match
-        alert("Invalid password");
-        console.error("Invalid password");
-      }
-    });
+        if (userFromDb || userFromDb.length == 0) {
+          navigate("/dashboard");
+        }
+      })
+      .catch((error) => {
+        alert("Invalid email or password");
+        console.error("Invalid email or password");
+      });
   };
 
   return (

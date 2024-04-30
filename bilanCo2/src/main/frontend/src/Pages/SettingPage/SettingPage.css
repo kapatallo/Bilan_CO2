@@ -1,12 +1,20 @@
+.setting-page{
+  display: flex;
+}
 .settings-container {
-  max-width: 100%;
-  margin-left: 20px;
-  padding-left: 140px;
+  width: 100%;
+  margin: 30px;
   text-align: left;
-  font-family: 'Arial', sans-serif;
   font-size: 14px;
 }
-
+.settings-container > .header-page{
+  width: 100%;
+}
+.setting-page > .settings-container {
+display: flex;
+flex-direction: column;
+align-items: center;
+}
 .settings-body {
   display: flex;
   flex-direction: column;
@@ -18,18 +26,12 @@
 }
 
 .h-settings {
-  padding-top: 40px;
-  margin-left: 25px;
-  padding-left: 130px;
-  position: relative;
-  bottom: 700px;
+  margin:10px 0px 10px 30px ;
   font-size: 25px;
   font-weight: bold;
+  width: 100%;
 }
-
-
-
-.input-container-button input[type="submit"] {
+.input-container-button input[type="submit"] , .annuler-button{
   margin-right: 20px;
   /* Add space between buttons */
   background-color: #656ED3;
@@ -37,23 +39,20 @@
   border: none;
   border-radius: 50px;
   cursor: pointer;
-  width: 108%;
-  height: 30px;
+  width: 150px;
+  height: 40px;
 }
 
-.input-container-button input[type="submit"]:hover {
+.input-container-button input[type="submit"]:hover , .annuler-button:hover {
   background-color: #6a45c5;
 }
 
 .input-container-button {
-  max-width: max-content;
   margin-bottom: 20px;
-  display: block ruby;
+  display: flex;
   margin-left: 25px;
-  padding-left: 130px;
-  padding-top: 20px;
-  position: relative;
-  bottom: 700px;
+  width: 100%;
+  justify-content: center;
 }
 
 form .settings-container>li>label {
@@ -63,14 +62,24 @@ form .settings-container>li>label {
   line-height: 25px;
   margin-right: 12px;
   margin-bottom: 0;
-  position: relative;
-  bottom: 700px;
+}
+.settings-form{
+  background-color: white;
+  border-radius: 20px;
+  min-width: 600px;
+  width: 50%;
+  padding: 1px;
+}
+.settings-form span{
+font-size: 14px;
 }
 
 form .settings-container>li {
   margin-bottom: 20px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  width:400px
 }
 
 .input-settings:focus {
@@ -80,12 +89,10 @@ form .settings-container>li {
 .input-settings {
   max-width: max-content;
   padding: 10px 12px;
-  font-size: 18px;
+  font-size: 14px;
   line-height: 25px;
   border-width: 2px;
   border-style: solid;
-  position: relative;
-  bottom: 700px;
   background-color: #F2F8FD;
   border: 1px solid #656ED3;
   border-radius: 50px;
@@ -102,7 +109,4 @@ form .settings-container>li {
   margin: 0px;
   margin-left: 0px;
   margin-left: 20px;
-  position: relative;
-  bottom: 690px;
-  left: 140px;
 }

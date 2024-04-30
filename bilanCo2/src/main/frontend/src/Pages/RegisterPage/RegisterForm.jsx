@@ -29,47 +29,22 @@ export default function RegisterForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // Hash the password
-    bcrypt.genSalt(10, function (err, salt) {
-      bcrypt.hash(registerData.mdp, salt, function (err, hash) {
-        // Store hash in your password DB.
-        if (err) {
-          console.error(err);
-          return;
+    axios
+      .post("https://192.168.75.51/api/bilanco2/utilisateurs", registerData)
+      .then((response) => {
+        console.log(response);
+        navigate("/login");
+      })
+      .catch(
+        (error) => {
+          console.log(error);
+        },
+        {
+          headers: {
+            mode: "cors",
+          },
         }
-
-        // Replace the plain text password with the hashed one
-        const hashedRegisterData = {
-          ...registerData,
-          mdp: hash,
-        };
-
-        console.log(hashedRegisterData);
-
-        axios
-          .post(
-            "https://192.168.75.51/api/bilanco2/utilisateurs",
-            hashedRegisterData
-          )
-          .then((response) => {
-            // en cas de réussite de la requête
-            console.log(response);
-            // Logique de validation du formulaire
-            navigate("/dashboard");
-          })
-          .catch(
-            (error) => {
-              // en cas d’échec de la requête
-              console.log(error);
-            },
-            {
-              headers: {
-                mode: "cors",
-              },
-            }
-          );
-      });
-    });
+      );
   };
 
   return (

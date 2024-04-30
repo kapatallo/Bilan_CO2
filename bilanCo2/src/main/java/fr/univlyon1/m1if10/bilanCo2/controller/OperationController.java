@@ -5,7 +5,6 @@ import fr.univlyon1.m1if10.bilanCo2.model.Utilisateur;
 import fr.univlyon1.m1if10.bilanCo2.repository.UtilisateurRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -106,8 +105,7 @@ public class OperationController {
                     @ApiResponse(responseCode = "401", description = "Unauthorized")
             })
     public ResponseEntity<Long> authenticate(@RequestParam("jwt") final String jwt,
-                                               @RequestParam("origin") final String origin)
-            throws AuthenticationException, IllegalArgumentException, BadRequestException {
+                                               @RequestParam("origin") final String origin) {
         String token = jwt.replace(BEARER, "");
         Long id = verifyToken(token, origin);
         Optional<Utilisateur> user = utilisateurRepository.findById(id);
@@ -137,7 +135,7 @@ public class OperationController {
             })
     public ResponseEntity<Void> logout(@RequestHeader(AUTHENTIFICATION) final String jwt,
                                        @RequestHeader("origin") final String origin)
-            throws AuthenticationException, IllegalArgumentException, BadRequestException {
+            throws AuthenticationException, IllegalArgumentException {
         String token = jwt.replace(BEARER, "");
         long id = verifyToken(token, origin);
         Optional<Utilisateur> user = utilisateurRepository.findById(id);
