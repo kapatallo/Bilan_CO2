@@ -113,7 +113,7 @@ export default function DashboardPage() {
         // Case 0 : semaine actuelle
         // Case 1 : semaine dernière
         // ...
-
+        var eightWeeksCarboneEmitSums = [0,0,0,0,0,0,0,0]
         var eightWeeksCarboneEmit = [
             {
                 transport: 0,
@@ -166,7 +166,7 @@ export default function DashboardPage() {
               
         ]
         
-        eightWeeksCarboneEmit.map( (weeklyCarbonEmit) => {
+        eightWeeksCarboneEmit.map( (weeklyCarbonEmit,i) => {
             const weeklyCarbonEmitValues = Object.keys(weeklyCarbonEmit).map ( (key) => {
                 axios.get(`https://192.168.75.51/api/bilanco2/${key}s/search/findByIdent`,
                 { params: {
@@ -183,6 +183,7 @@ export default function DashboardPage() {
                 .catch( (error) => {
                     // en cas d’échec de la requête
                     console.log(error);
+                    return 0
                 })
             })
             weeklyCarbonEmit.transport = weeklyCarbonEmitValues[0]
@@ -190,7 +191,10 @@ export default function DashboardPage() {
             weeklyCarbonEmit.alimentation = weeklyCarbonEmitValues[2]
             weeklyCarbonEmit.divers = weeklyCarbonEmitValues[3]
             weekNb--;
+            eightWeeksCarboneEmitSums[i] = weeklyCarbonEmit.transport + weeklyCarbonEmit.logement
+                                        + weeklyCarbonEmit.alimentation + weeklyCarbonEmit.divers;
         })
+        setData_chart(eightWeeksCarboneEmitSums)
 
         //Si tous les champs de la dernière case du tableau (la semaine actuelle) sont à 0n
         //On considère que le questionnaire n'a pas été fait 
