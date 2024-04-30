@@ -64,8 +64,7 @@ export default function FirstFormPage() {
               .then((response) => response.json())
               .then((data) => {
                 if (data.results && data.results.length > 0) {
-                  co2_res =
-                    Math.round(data.results[0]["AVG(co2_g_km)"] * 100) / 100; // pour arrondir à 2 chiffres après la virgule
+                  co2_res = Math.round(data.results[0]["AVG(co2_g_km)"]);
                 }
               })
               .then(() => {
@@ -86,16 +85,10 @@ export default function FirstFormPage() {
                   ];
                 let appartement = userResponses.yesNoResponse;
 
-                console.log("co2: ", co2);
-                console.log("surface: ", surface);
-                console.log("nbPersonnesFoyer: ", nbPersonnesFoyer);
-                console.log("tailleAgglomeration: ", tailleAgglo);
-                console.log("Appartement: ", appartement);
-
                 const data = {
                   idui: 0,
                   id: 1, // a recup de la base de données
-                  co2_g_km: co2,
+                  cnit: co2,
                   nbPersFoyer: nbPersonnesFoyer,
                   surfaceLogement: surface,
                   habAgglo: tailleAgglo,
@@ -106,11 +99,12 @@ export default function FirstFormPage() {
 
                 axios
                   .post(
-                    "https://192.168.75.51/api/bilanco2/utilisateur/infos",
+                    "https://192.168.75.51/api/bilanco2/utilisateur/infos/",
                     data
                   )
                   .then((response) => {
                     console.log(response);
+                    console.log(data);
                   });
               })
               .then(() => {
