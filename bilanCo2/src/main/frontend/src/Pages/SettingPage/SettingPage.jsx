@@ -3,15 +3,36 @@ import NavBar from '../../NavBar/NavBar';
 import { useState } from 'react';
 import { Form } from 'react-router-dom';
 import './SettingPage.css'
+import axios from 'axios';
 
 export default function SettingPage() {
-    const [inputValue, setValue] = useState('');
+    const [inputValue, setValue] = useState({
+        name: '',
+        firstnmame: '',
+        email: '',
+        newPassword: ''
+    });
 
     const handleChange = (e) => {
         const name = e.target.name;
         const value = e.target.value;
         setValue(values => ({ ...values, [name]: value }));
     }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.put('https://192.168.75.51/api/bilanco2/utilisateurs', inputValue,{
+                headers: {
+                    'mode': 'cors'
+                }
+            })
+            console.log('User updated : ', response.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <div>
             <NavBar />
@@ -20,7 +41,7 @@ export default function SettingPage() {
                     <span className='header-page-name-settings'>Paramètres</span>
                 </p>
                 <div className='h-settings'>Vos informations</div>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <ul className='settings-container'>
                         <li>
                             <label>

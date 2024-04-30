@@ -97,7 +97,7 @@ export default function RegisterForm() {
                 <div className="input-container">
                     <label htmlFor="pwd">Date de naissance:</label>
                     <input onChange={handleChange}
-                    type="text" id="ddn" name="date_de_naissance" required/>
+                    type="date" id="ddn" name="date_de_naissance" required/>
                 </div>
 
                 <div className="input-container">
