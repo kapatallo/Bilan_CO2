@@ -91,7 +91,7 @@ export default function RegisterForm() {
                 <div className="input-container">
                     <label htmlFor="confirmedPwd">Confirmer le mot de passe:</label>
                     <input 
-                    type="text" id="confmdp" name="confirmedPwd" required/>
+                    type="password" id="confmdp" name="confirmedPwd" required/>
                 </div>
 
                 <div className="input-container">
